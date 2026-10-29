@@ -1,0 +1,15 @@
+# Salesforce
+.sf/
+.sfdx/
+.localdevserver/
+**/lwc/jsconfig.json
+**/.eslintcache
+
+# Node / testes
+node_modules/
+coverage/
+package-lock.json
+
+# Sistema
+.DS_Store
+*.log

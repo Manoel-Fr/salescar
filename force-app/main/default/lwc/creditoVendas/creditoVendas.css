@@ -1,0 +1,505 @@
+@import 'c/salesCarStyles';
+
+.etapa {
+    display: grid;
+    grid-template-columns: 22rem minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* ---------- Simulador ---------- */
+.simulador {
+    position: sticky;
+    top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding: 1rem;
+}
+
+/* Desktop: mesma altura máxima das demais áreas roláveis (ver .sc-rolagem) */
+@media (min-width: 1101px) {
+    .simulador {
+        max-height: max(20rem, calc(100vh - var(--sc-reserva-rolagem, 26.5rem)));
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--sc-borda-forte) transparent;
+    }
+}
+
+.cliente {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.75rem 0.875rem;
+    border-radius: var(--sc-raio-card);
+    background: var(--sc-degrade-noite);
+    color: #ffffff;
+}
+
+/* Medidor circular do score: anel com conic-gradient */
+.medidor {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 4.25rem;
+    height: 4.25rem;
+    border-radius: 50%;
+    background: conic-gradient(var(--cor-medidor) 0 var(--proporcao), rgba(255, 255, 255, 0.12) var(--proporcao) 100%);
+}
+
+.medidor::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    background: var(--sc-noite);
+}
+
+.medidor-numero,
+.medidor-faixa {
+    position: relative;
+}
+
+.medidor-numero {
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.medidor-faixa {
+    margin-top: 0.125rem;
+    font-size: 0.6875rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.cliente-rotulo {
+    margin: 0;
+    font-size: var(--sc-fonte-xs);
+    color: var(--sc-brilho);
+}
+
+.cliente-nome {
+    margin: 0.125rem 0 0;
+    font-size: var(--sc-fonte-md);
+    font-weight: 800;
+}
+
+.campos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+}
+
+.campo-rotulo {
+    margin: 0 0 0.375rem;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 600;
+    color: var(--sc-texto-2);
+}
+
+.valor-bem {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--sc-borda);
+}
+
+.valor-bem-numero {
+    font-size: var(--sc-fonte-lg);
+    font-weight: 800;
+}
+
+.controle-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.controle-valor {
+    font-size: var(--sc-fonte-sm);
+    font-weight: 800;
+    color: var(--sc-marca);
+}
+
+.deslizante {
+    width: 100%;
+    accent-color: var(--sc-marca);
+    cursor: pointer;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+}
+
+.chip {
+    height: 2rem;
+    padding: 0 0.875rem;
+    border: 1px solid var(--sc-borda);
+    border-radius: 999px;
+    background: var(--sc-superficie);
+    color: var(--sc-texto-2);
+    font: inherit;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.chip:hover {
+    border-color: var(--sc-marca);
+    color: var(--sc-marca);
+}
+
+.chip:focus-visible {
+    outline: 3px solid var(--sc-marca);
+    outline-offset: 2px;
+}
+
+.chip-ativo,
+.chip-ativo:hover {
+    border-color: var(--sc-noite);
+    background: var(--sc-noite);
+    color: #ffffff;
+}
+
+.pular {
+    align-self: center;
+    margin-top: -0.375rem;
+}
+
+/* Aviso discreto no topo dos resultados (antes ocupava o fim do simulador) */
+.aviso-simulacao {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.75rem;
+    font-size: var(--sc-fonte-xs);
+    color: var(--sc-ambar);
+}
+
+/* ---------- Resultados ---------- */
+.resultados {
+    min-width: 0;
+}
+
+.progresso {
+    margin-bottom: 1rem;
+}
+
+.progresso-texto {
+    font-size: var(--sc-fonte-sm);
+    font-weight: 700;
+    color: var(--sc-texto-2);
+}
+
+.progresso-trilho {
+    height: 6px;
+    margin-top: 0.5rem;
+    border-radius: 999px;
+    background: var(--sc-borda);
+    overflow: hidden;
+}
+
+.progresso-barra {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--sc-brilho), var(--sc-marca));
+    transition: width 0.4s ease;
+}
+
+.ofertas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.oferta {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3rem minmax(11rem, 1fr) minmax(0, 2fr) auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--sc-borda);
+    border-radius: var(--sc-raio-card);
+    background: var(--sc-superficie);
+    box-shadow: var(--sc-sombra-card);
+    animation: chegar 0.35s ease both;
+}
+
+.oferta-pendente {
+    grid-template-columns: 3rem minmax(0, 1fr);
+    opacity: 0.75;
+}
+
+.oferta-negada {
+    grid-template-columns: 3rem minmax(0, 1fr);
+    background: var(--sc-fundo);
+    box-shadow: none;
+}
+
+.oferta-melhor {
+    border-color: var(--sc-verde);
+    box-shadow: 0 0 0 1px var(--sc-verde), 0 12px 28px rgba(21, 128, 61, 0.15);
+}
+
+.oferta-escolhida {
+    border-color: var(--sc-marca);
+    box-shadow: 0 0 0 2px var(--sc-marca), var(--sc-sombra-elevada);
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+}
+
+.oferta-negada .logo {
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
+.oferta-nome {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.25rem;
+    font-size: var(--sc-fonte-md);
+    font-weight: 800;
+}
+
+.selo-melhor {
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    background: var(--sc-verde);
+    color: #ffffff;
+    font-size: 0.6875rem;
+    font-weight: 800;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: var(--sc-fonte-xs);
+    font-weight: 700;
+}
+
+.status::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.status-aprovado {
+    color: var(--sc-verde);
+}
+
+.status-condicionado {
+    color: var(--sc-marca);
+}
+
+.status-analise {
+    color: var(--sc-ambar);
+}
+
+.status-recusado {
+    color: var(--sc-vermelho);
+}
+
+.oferta-motivo {
+    margin: 0.25rem 0 0;
+    font-size: var(--sc-fonte-xs);
+    color: var(--sc-texto-3);
+}
+
+.consultando {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    font-size: var(--sc-fonte-xs);
+    color: var(--sc-texto-3);
+}
+
+/* Três pontos pulsando */
+.pontos {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background: var(--sc-marca);
+    box-shadow: 0.625rem 0 0 var(--sc-marca), 1.25rem 0 0 var(--sc-marca);
+    margin-right: 1.25rem;
+    animation: pulsar 1s ease-in-out infinite;
+}
+
+.oferta-numeros {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0;
+}
+
+.oferta-numeros dt {
+    font-size: var(--sc-fonte-xs);
+    color: var(--sc-texto-3);
+}
+
+.oferta-numeros dd {
+    margin: 0.125rem 0 0;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.oferta-parcela {
+    font-size: var(--sc-fonte-xl) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em;
+}
+
+.oferta-melhor .oferta-parcela {
+    color: var(--sc-verde);
+}
+
+.oferta-cet {
+    font-size: 0.6875rem;
+    color: var(--sc-texto-3);
+}
+
+.btn-escolher {
+    white-space: nowrap;
+}
+
+.oferta-escolhida .btn-escolher:disabled {
+    background: var(--sc-marca-suave);
+    color: var(--sc-marca);
+    box-shadow: none;
+}
+
+/* ---------- Vazio ---------- */
+.vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 20rem;
+    padding: 2rem;
+    border: 2px dashed var(--sc-borda);
+    border-radius: var(--sc-raio-card);
+    text-align: center;
+}
+
+.vazio-icones {
+    display: flex;
+}
+
+.vazio-icones span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin-left: -0.5rem;
+    border: 3px solid var(--sc-superficie);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: var(--sc-fonte-xs);
+    font-weight: 900;
+}
+
+.vazio-titulo {
+    margin: 1.25rem 0 0.375rem;
+    font-size: var(--sc-fonte-xl);
+    font-weight: 800;
+}
+
+.vazio-texto {
+    max-width: 44ch;
+    margin: 0;
+    font-size: var(--sc-fonte-sm);
+    color: var(--sc-texto-2);
+}
+
+@keyframes chegar {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes pulsar {
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .oferta,
+    .pontos {
+        animation: none;
+    }
+
+    .progresso-barra {
+        transition: none;
+    }
+}
+
+@media (max-width: 1280px) {
+    .oferta {
+        grid-template-columns: 3rem minmax(0, 1fr) auto;
+    }
+
+    .oferta-numeros {
+        grid-column: 2 / -1;
+        grid-row: 2;
+    }
+
+    .btn-escolher {
+        grid-column: 3;
+        grid-row: 1;
+    }
+}
+
+@media (max-width: 1100px) {
+    .etapa {
+        grid-template-columns: 1fr;
+    }
+
+    .simulador {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    .oferta-numeros {
+        grid-template-columns: 1fr 1fr;
+    }
+}

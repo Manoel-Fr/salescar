@@ -1,0 +1,316 @@
+/*
+ * Identidade visual SalesCar — "showroom à noite".
+ * Abertura em azul-noite com brilho; vitrine clara onde as fotos dos carros dão a cor;
+ * azul elétrico marca ação e seleção.
+ * Importado por cada componente do fluxo:  @import 'c/salesCarStyles';
+ */
+:host {
+    --sc-noite: #0a1630;
+    --sc-noite-2: #13295a;
+    --sc-noite-3: #1d3a7a;
+    --sc-brilho: #38bdf8;
+    --sc-degrade-noite: radial-gradient(120% 140% at 85% -20%, rgba(56, 189, 248, 0.28) 0%, transparent 55%),
+        radial-gradient(90% 120% at 0% 120%, rgba(47, 107, 255, 0.35) 0%, transparent 60%),
+        linear-gradient(135deg, var(--sc-noite) 0%, var(--sc-noite-2) 100%);
+
+    --sc-marca: #2f6bff;
+    --sc-marca-forte: #1f54e0;
+    --sc-marca-suave: #e9f0ff;
+
+    --sc-fundo: #eef1f6;
+    --sc-superficie: #ffffff;
+    --sc-borda: #e1e6ee;
+    --sc-borda-forte: #c5cdd9;
+    --sc-texto: #0f172a;
+    --sc-texto-2: #475569;
+    --sc-texto-3: #64748b;
+
+    --sc-verde: #15803d;
+    --sc-verde-suave: #e6f6ec;
+    --sc-ambar: #8a5a00;
+    --sc-ambar-suave: #fff3d1;
+    --sc-vermelho: #c0262d;
+    --sc-vermelho-suave: #fdecec;
+
+    --sc-sombra-card: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.06);
+    --sc-sombra-elevada: 0 2px 4px rgba(15, 23, 42, 0.08), 0 18px 40px rgba(15, 23, 42, 0.14);
+
+    /* Escala tipográfica (base 13px do Lightning) */
+    --sc-fonte-xs: 0.75rem;
+    --sc-fonte-sm: 0.8125rem;
+    --sc-fonte-md: 0.9375rem;
+    --sc-fonte-lg: 1.125rem;
+    --sc-fonte-xl: 1.375rem;
+    --sc-fonte-2xl: 1.75rem;
+
+    /* Raios com hierarquia: card > controle > etiqueta */
+    --sc-raio-card: 16px;
+    --sc-raio-controle: 10px;
+    --sc-raio-etiqueta: 999px;
+
+    display: block;
+    color: var(--sc-texto);
+}
+
+/* ---------- Superfícies ---------- */
+.sc-painel {
+    background: var(--sc-superficie);
+    border: 1px solid var(--sc-borda);
+    border-radius: var(--sc-raio-card);
+    box-shadow: var(--sc-sombra-card);
+}
+
+.sc-secao-topo {
+    margin-bottom: 1.25rem;
+}
+
+.sc-painel-titulo {
+    margin: 0 0 0.75rem;
+    font-size: var(--sc-fonte-md);
+    font-weight: 700;
+}
+
+.sc-titulo {
+    margin: 0;
+    font-size: var(--sc-fonte-xl);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.sc-subtitulo {
+    margin: 0.25rem 0 0;
+    font-size: var(--sc-fonte-sm);
+    color: var(--sc-texto-3);
+}
+
+.sc-rotulo {
+    margin: 0 0 0.5rem;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 700;
+    color: var(--sc-texto-2);
+}
+
+/* ---------- Botões próprios (base components não aceitam cor de marca no SLDS 2) ---------- */
+.sc-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+    padding: 0 1rem;
+    border: 1px solid transparent;
+    border-radius: var(--sc-raio-controle);
+    font: inherit;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.sc-btn:focus-visible {
+    outline: 3px solid var(--sc-marca);
+    outline-offset: 2px;
+}
+
+.sc-btn:disabled {
+    cursor: not-allowed;
+}
+
+.sc-btn-principal {
+    background: linear-gradient(135deg, #4a82ff 0%, var(--sc-marca) 55%, var(--sc-marca-forte) 100%);
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(47, 107, 255, 0.35);
+}
+
+.sc-btn-principal:hover:not(:disabled) {
+    box-shadow: 0 8px 22px rgba(47, 107, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+.sc-btn-principal:disabled {
+    background: var(--sc-borda);
+    color: var(--sc-texto-3);
+    box-shadow: none;
+}
+
+.sc-btn-secundario {
+    background: var(--sc-superficie);
+    border-color: var(--sc-borda-forte);
+    color: var(--sc-texto);
+}
+
+.sc-btn-secundario:hover:not(:disabled) {
+    border-color: var(--sc-marca);
+    color: var(--sc-marca);
+}
+
+.sc-btn-texto {
+    min-height: auto;
+    padding: 0.25rem 0;
+    background: none;
+    color: var(--sc-marca);
+}
+
+.sc-btn-texto:hover:not(:disabled) {
+    text-decoration: underline;
+}
+
+.sc-btn-largo {
+    width: 100%;
+    min-height: 3rem;
+    font-size: var(--sc-fonte-md);
+}
+
+/* Botão só de ícone (remover item, limpar busca) */
+.sc-btn-icone {
+    min-height: 2rem;
+    width: 2rem;
+    padding: 0;
+    background: none;
+    color: var(--sc-texto-3);
+}
+
+.sc-btn-icone:hover:not(:disabled) {
+    background: var(--sc-vermelho-suave);
+    color: var(--sc-vermelho);
+}
+
+/* ---------- Valores ---------- */
+.sc-numero {
+    font-variant-numeric: tabular-nums;
+}
+
+.sc-preco {
+    white-space: nowrap;
+    font-size: var(--sc-fonte-xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Etiquetas de status (só aparecem fora do normal) ---------- */
+.sc-etiqueta {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--sc-raio-etiqueta);
+    font-size: var(--sc-fonte-xs);
+    font-weight: 700;
+}
+
+.sc-etiqueta-reservado {
+    background: var(--sc-ambar-suave);
+    color: var(--sc-ambar);
+}
+
+.sc-etiqueta-vendido {
+    background: var(--sc-texto);
+    color: #ffffff;
+}
+
+/* ---------- Resumo financeiro ---------- */
+.sc-resumo-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.25rem 0;
+    font-size: var(--sc-fonte-sm);
+    color: var(--sc-texto-2);
+    font-variant-numeric: tabular-nums;
+}
+
+.sc-resumo-total {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--sc-borda);
+    color: var(--sc-texto);
+    font-size: var(--sc-fonte-md);
+    font-weight: 700;
+}
+
+.sc-resumo-total .sc-resumo-valor {
+    font-size: var(--sc-fonte-2xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+/* ---------- Estados: vazio, erro, carregando ---------- */
+.sc-vazio {
+    padding: 3rem 1rem;
+    text-align: center;
+    color: var(--sc-texto-2);
+}
+
+.sc-vazio-titulo {
+    margin: 0.75rem 0 0.25rem;
+    font-size: var(--sc-fonte-lg);
+    font-weight: 700;
+    color: var(--sc-texto);
+}
+
+.sc-vazio-texto {
+    margin: 0 auto 1rem;
+    max-width: 36ch;
+    font-size: var(--sc-fonte-sm);
+}
+
+.sc-erro {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--sc-raio-controle);
+    background: var(--sc-vermelho-suave);
+    color: var(--sc-vermelho);
+    font-size: var(--sc-fonte-sm);
+}
+
+.sc-carregando {
+    position: relative;
+    min-height: 12rem;
+}
+
+/*
+ * Rolagem interna das etapas (desktop): o conteúdo principal rola por dentro e os painéis
+ * de apoio ficam à vista. Folga interna para não cortar sombras/foco nas bordas.
+ * Abaixo de 1100px a página rola normalmente (rolagem aninhada atrapalha no toque).
+ */
+@media (min-width: 1101px) {
+    .sc-rolagem {
+        /* Desconta cabeçalho do Salesforce (~8rem), abertura compacta, rodapé Voltar/Continuar */
+        max-height: max(20rem, calc(100vh - var(--sc-reserva-rolagem, 26.5rem)));
+        margin: -0.5rem;
+        padding: 0.5rem 0.75rem 0.75rem 0.5rem;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        scrollbar-color: var(--sc-borda-forte) transparent;
+    }
+
+    .sc-rolagem::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .sc-rolagem::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        background: var(--sc-borda-forte);
+    }
+
+    .sc-rolagem::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sc-btn {
+        transition: none;
+    }
+
+    .sc-btn-principal:hover:not(:disabled) {
+        transform: none;
+    }
+}

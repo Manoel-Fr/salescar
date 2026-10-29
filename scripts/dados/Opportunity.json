@@ -1,0 +1,617 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op1_0"
+      },
+      "AccountId": "@Conta1",
+      "Name": "Transportadora Vale - 3x HB20",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-01-26",
+      "Amount": 285000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op1_1"
+      },
+      "AccountId": "@Conta1",
+      "Name": "Transportadora Vale - 1x SW4",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-05-28",
+      "Amount": 300000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op1_2"
+      },
+      "AccountId": "@Conta1",
+      "Name": "Transportadora Vale - 3x Hilux",
+      "StageName": "Closed Lost",
+      "CloseDate": "2026-09-07",
+      "Amount": 855000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "OpA1"
+      },
+      "AccountId": "@Conta1",
+      "Name": "Transportadora Vale - S10 (em negociação)",
+      "StageName": "Negotiation/Review",
+      "CloseDate": "2026-12-17",
+      "Amount": 240000,
+      "LeadSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op2_0"
+      },
+      "AccountId": "@Conta2",
+      "Name": "Construtora Alicerce - 2x Hilux",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-06-19",
+      "Amount": 570000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op2_1"
+      },
+      "AccountId": "@Conta2",
+      "Name": "Construtora Alicerce - 2x Strada",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-06-07",
+      "Amount": 210000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op2_2"
+      },
+      "AccountId": "@Conta2",
+      "Name": "Construtora Alicerce - 2x S10",
+      "StageName": "Closed Lost",
+      "CloseDate": "2026-08-24",
+      "Amount": 480000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "OpA2"
+      },
+      "AccountId": "@Conta2",
+      "Name": "Construtora Alicerce - Compass (em negociação)",
+      "StageName": "Proposal/Price Quote",
+      "CloseDate": "2026-12-03",
+      "Amount": 190000,
+      "LeadSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op3_0"
+      },
+      "AccountId": "@Conta3",
+      "Name": "Clínica Odontológica - 1x Tracker",
+      "StageName": "Closed Lost",
+      "CloseDate": "2025-04-18",
+      "Amount": 140000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op4_0"
+      },
+      "AccountId": "@Conta4",
+      "Name": "Agropecuária Santa - 1x SW4",
+      "StageName": "Closed Won",
+      "CloseDate": "2024-12-20",
+      "Amount": 300000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "OpA4"
+      },
+      "AccountId": "@Conta4",
+      "Name": "Agropecuária Santa - Corolla (em negociação)",
+      "StageName": "Negotiation/Review",
+      "CloseDate": "2026-11-18",
+      "Amount": 150000,
+      "LeadSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op5_0"
+      },
+      "AccountId": "@Conta5",
+      "Name": "Locadora Rota - 2x HB20",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-02-22",
+      "Amount": 190000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op5_1"
+      },
+      "AccountId": "@Conta5",
+      "Name": "Locadora Rota - 3x Strada",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-08-03",
+      "Amount": 315000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op5_2"
+      },
+      "AccountId": "@Conta5",
+      "Name": "Locadora Rota - 2x Strada",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-09-09",
+      "Amount": 210000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "OpA5"
+      },
+      "AccountId": "@Conta5",
+      "Name": "Locadora Rota - S10 (em negociação)",
+      "StageName": "Negotiation/Review",
+      "CloseDate": "2026-12-25",
+      "Amount": 240000,
+      "LeadSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op6_0"
+      },
+      "AccountId": "@Conta6",
+      "Name": "Escritório Mendes - 1x HB20",
+      "StageName": "Closed Lost",
+      "CloseDate": "2026-08-15",
+      "Amount": 95000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op6_1"
+      },
+      "AccountId": "@Conta6",
+      "Name": "Escritório Mendes - 1x Compass",
+      "StageName": "Closed Lost",
+      "CloseDate": "2025-06-07",
+      "Amount": 190000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op7_0"
+      },
+      "AccountId": "@Conta7",
+      "Name": "Distribuidora de - 3x Strada",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-09-04",
+      "Amount": 315000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op7_1"
+      },
+      "AccountId": "@Conta7",
+      "Name": "Distribuidora de - 3x Kicks",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-04-22",
+      "Amount": 345000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op7_2"
+      },
+      "AccountId": "@Conta7",
+      "Name": "Distribuidora de - 1x SW4",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-09-18",
+      "Amount": 300000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "OpA8"
+      },
+      "AccountId": "@Conta8",
+      "Name": "Mariana Costa - S10 (em negociação)",
+      "StageName": "Proposal/Price Quote",
+      "CloseDate": "2026-11-13",
+      "Amount": 240000,
+      "LeadSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op9_0"
+      },
+      "AccountId": "@Conta9",
+      "Name": "TecnoSul Soluções - 1x Onix",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-05-22",
+      "Amount": 98000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op9_1"
+      },
+      "AccountId": "@Conta9",
+      "Name": "TecnoSul Soluções - 1x Toro",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-04-20",
+      "Amount": 170000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op9_2"
+      },
+      "AccountId": "@Conta9",
+      "Name": "TecnoSul Soluções - 1x Tracker",
+      "StageName": "Closed Lost",
+      "CloseDate": "2026-04-08",
+      "Amount": 140000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op10_0"
+      },
+      "AccountId": "@Conta10",
+      "Name": "Hospital Veterinário - 1x Compass",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-08-23",
+      "Amount": 190000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op10_1"
+      },
+      "AccountId": "@Conta10",
+      "Name": "Hospital Veterinário - 1x T-Cross",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-10-18",
+      "Amount": 135000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op10_2"
+      },
+      "AccountId": "@Conta10",
+      "Name": "Hospital Veterinário - 1x T-Cross",
+      "StageName": "Closed Lost",
+      "CloseDate": "2025-10-20",
+      "Amount": 135000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op11_0"
+      },
+      "AccountId": "@Conta11",
+      "Name": "Rede de - 1x Onix",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-03-07",
+      "Amount": 98000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op11_1"
+      },
+      "AccountId": "@Conta11",
+      "Name": "Rede de - 1x Onix",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-08-03",
+      "Amount": 98000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op11_2"
+      },
+      "AccountId": "@Conta11",
+      "Name": "Rede de - 3x SW4",
+      "StageName": "Closed Won",
+      "CloseDate": "2024-12-01",
+      "Amount": 900000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "OpA11"
+      },
+      "AccountId": "@Conta11",
+      "Name": "Rede de - Kicks (em negociação)",
+      "StageName": "Qualification",
+      "CloseDate": "2026-11-12",
+      "Amount": 115000,
+      "LeadSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "OpA12"
+      },
+      "AccountId": "@Conta12",
+      "Name": "Pousada Mar - Tracker (em negociação)",
+      "StageName": "Qualification",
+      "CloseDate": "2026-11-28",
+      "Amount": 140000,
+      "LeadSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op13_0"
+      },
+      "AccountId": "@Conta13",
+      "Name": "Engenharia Elétrica - 1x Compass",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-04-05",
+      "Amount": 190000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op14_0"
+      },
+      "AccountId": "@Conta14",
+      "Name": "Colégio Horizonte - 2x S10",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-07-28",
+      "Amount": 480000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op14_1"
+      },
+      "AccountId": "@Conta14",
+      "Name": "Colégio Horizonte - 1x S10",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-08-22",
+      "Amount": 240000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op15_0"
+      },
+      "AccountId": "@Conta15",
+      "Name": "Supermercados Preço - 1x Toro",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-02-12",
+      "Amount": 170000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op15_1"
+      },
+      "AccountId": "@Conta15",
+      "Name": "Supermercados Preço - 1x Strada",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-06-07",
+      "Amount": 105000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op15_2"
+      },
+      "AccountId": "@Conta15",
+      "Name": "Supermercados Preço - 3x Hilux",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-03-27",
+      "Amount": 855000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "OpA15"
+      },
+      "AccountId": "@Conta15",
+      "Name": "Supermercados Preço - SW4 (em negociação)",
+      "StageName": "Proposal/Price Quote",
+      "CloseDate": "2026-12-20",
+      "Amount": 300000,
+      "LeadSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "OpA16"
+      },
+      "AccountId": "@Conta16",
+      "Name": "Studio Fitness - Strada (em negociação)",
+      "StageName": "Proposal/Price Quote",
+      "CloseDate": "2026-11-14",
+      "Amount": 105000,
+      "LeadSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op17_0"
+      },
+      "AccountId": "@Conta17",
+      "Name": "Logística Expressa - 2x SW4",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-05-16",
+      "Amount": 600000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "OpA17"
+      },
+      "AccountId": "@Conta17",
+      "Name": "Logística Expressa - HB20 (em negociação)",
+      "StageName": "Proposal/Price Quote",
+      "CloseDate": "2026-11-24",
+      "Amount": 95000,
+      "LeadSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op18_0"
+      },
+      "AccountId": "@Conta18",
+      "Name": "Consultoria Ápice - 1x T-Cross",
+      "StageName": "Closed Lost",
+      "CloseDate": "2025-07-09",
+      "Amount": 135000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op18_1"
+      },
+      "AccountId": "@Conta18",
+      "Name": "Consultoria Ápice - 1x Hilux",
+      "StageName": "Closed Lost",
+      "CloseDate": "2025-08-31",
+      "Amount": 285000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op18_2"
+      },
+      "AccountId": "@Conta18",
+      "Name": "Consultoria Ápice - 1x S10",
+      "StageName": "Closed Won",
+      "CloseDate": "2026-01-04",
+      "Amount": 240000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op19_0"
+      },
+      "AccountId": "@Conta19",
+      "Name": "Laticínios Serra - 2x Kicks",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-11-26",
+      "Amount": 230000,
+      "Type": "New Customer",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "Op19_1"
+      },
+      "AccountId": "@Conta19",
+      "Name": "Laticínios Serra - 2x Hilux",
+      "StageName": "Closed Won",
+      "CloseDate": "2025-07-19",
+      "Amount": 570000,
+      "Type": "Existing Customer - Replacement",
+      "LeadSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Opportunity",
+        "referenceId": "OpA20"
+      },
+      "AccountId": "@Conta20",
+      "Name": "Energia Solar - SW4 (em negociação)",
+      "StageName": "Needs Analysis",
+      "CloseDate": "2026-12-07",
+      "Amount": 300000,
+      "LeadSource": "Phone Inquiry"
+    }
+  ]
+}

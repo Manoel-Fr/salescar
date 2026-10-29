@@ -1,0 +1,437 @@
+@import 'c/salesCarStyles';
+
+/* Sem overflow: hidden aqui — quebraria o position: sticky do ticket */
+.app {
+    padding-bottom: 1.5rem;
+    background: var(--sc-fundo);
+    border-radius: var(--sc-raio-card);
+}
+
+/* ---------- Abertura: showroom à noite ---------- */
+.hero {
+    position: relative;
+    padding: 1.25rem 1.75rem 5.5rem;
+    border-radius: var(--sc-raio-card) var(--sc-raio-card) 0 0;
+    background: var(--sc-degrade-noite);
+    overflow: hidden;
+    color: #ffffff;
+}
+
+/* Linha de horizonte sutil: o "piso" do showroom */
+.hero::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 40%;
+    background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 64px);
+    mask-image: linear-gradient(180deg, transparent, #000);
+    pointer-events: none;
+}
+
+.hero-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.marca-selo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--sc-brilho), var(--sc-marca));
+    box-shadow: 0 6px 18px rgba(47, 107, 255, 0.45);
+    font-size: var(--sc-fonte-sm);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+}
+
+.marca-nome {
+    font-size: var(--sc-fonte-lg);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.marca-contexto {
+    padding-left: 0.625rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: var(--sc-fonte-sm);
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* Etapas em pílula de vidro */
+.etapas {
+    display: flex;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0.25rem;
+    list-style: none;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+}
+
+.etapa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.25rem;
+    padding: 0 1rem 0 0.375rem;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: rgba(255, 255, 255, 0.75);
+    font: inherit;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.etapa:hover:not(:disabled) {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.etapa:focus-visible {
+    outline: 3px solid var(--sc-brilho);
+    outline-offset: 2px;
+}
+
+.etapa:disabled {
+    color: rgba(255, 255, 255, 0.35);
+    cursor: not-allowed;
+}
+
+.etapa-numero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: var(--sc-fonte-xs);
+    font-weight: 800;
+}
+
+.etapa-ativa,
+.etapa-ativa:hover:not(:disabled) {
+    background: #ffffff;
+    color: var(--sc-noite);
+}
+
+.etapa-ativa .etapa-numero {
+    background: var(--sc-marca);
+    color: #ffffff;
+}
+
+/* Etapas e "Nova negociação" ficam juntas à direita */
+.hero-topo nav {
+    margin-left: auto;
+}
+
+.nova-negociacao {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.75rem;
+    padding: 0 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    font: inherit;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.nova-negociacao:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.nova-negociacao:focus-visible {
+    outline: 3px solid var(--sc-brilho);
+    outline-offset: 2px;
+}
+
+.hero-corpo {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.hero-saudacao {
+    margin: 0;
+    font-size: var(--sc-fonte-md);
+    color: var(--sc-brilho);
+    font-weight: 600;
+}
+
+.hero-titulo {
+    margin: 0.25rem 0 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+}
+
+/* Indicadores em vidro */
+.indicadores {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.indicador {
+    min-width: 9.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(8px);
+}
+
+.indicador dt {
+    font-size: var(--sc-fonte-xs);
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.indicador dd {
+    margin: 0.25rem 0 0;
+    font-size: 1.625rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.indicador-nota {
+    font-size: var(--sc-fonte-xs);
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.indicador-destaque {
+    border-color: rgba(56, 189, 248, 0.45);
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(47, 107, 255, 0.22));
+}
+
+/* Abertura compacta (etapas 2–4): mesma identidade, menos altura */
+.hero-compacto {
+    padding-bottom: 4.25rem;
+}
+
+.hero-compacto .hero-corpo {
+    margin-top: 0.75rem;
+}
+
+.hero-compacto .hero-saudacao {
+    display: none;
+}
+
+.hero-compacto .hero-titulo {
+    font-size: 1.75rem;
+}
+
+.hero-compacto .indicador {
+    padding: 0.5rem 0.875rem;
+}
+
+.hero-compacto .indicador dd {
+    font-size: var(--sc-fonte-xl);
+}
+
+.hero-compacto .indicador-nota {
+    display: none;
+}
+
+/* ---------- Montagem: vitrine e ticket flutuam sobre a abertura ---------- */
+.montagem {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 23rem;
+    gap: 1.5rem;
+    align-items: start;
+    margin-top: -3.5rem;
+    padding: 0 1.75rem;
+}
+
+.vitrine {
+    padding: 1.25rem;
+}
+
+.negociacao {
+    position: sticky;
+    top: 1rem;
+}
+
+/* Ticket da negociação: topo escuro + corpo claro */
+/* Brilho branco em vez de sombra escura: some sobre a abertura escura de forma limpa */
+.ticket {
+    border-radius: var(--sc-raio-card);
+    background: var(--sc-superficie);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7), 0 12px 32px rgba(255, 255, 255, 0.35);
+    overflow: hidden;
+}
+
+.ticket-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: var(--sc-degrade-noite);
+    color: #ffffff;
+}
+
+.ticket-titulo {
+    margin: 0;
+    font-size: var(--sc-fonte-lg);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.ticket-contagem {
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: var(--sc-fonte-xs);
+    font-weight: 700;
+}
+
+.ticket-corpo {
+    padding: 1.25rem;
+}
+
+.conteudo-etapa {
+    position: relative;
+    z-index: 1;
+    margin: -3rem 1.75rem 0;
+    padding: 1.5rem 1.75rem;
+}
+
+.rodape-etapa {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--sc-borda);
+}
+
+.rodape-direita {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.rodape-dica {
+    font-size: var(--sc-fonte-sm);
+    color: var(--sc-texto-3);
+}
+
+/* Etapa já percorrida: número vira check visual */
+.etapa-feita .etapa-numero {
+    background: rgba(74, 222, 128, 0.25);
+    color: #bbf7d0;
+}
+
+.barra-movel {
+    display: none;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1280px) {
+    .indicador {
+        min-width: 8rem;
+    }
+
+    .hero-titulo {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 1100px) {
+    .montagem {
+        grid-template-columns: 1fr;
+    }
+
+    .negociacao {
+        position: static;
+        scroll-margin-top: 1rem;
+    }
+
+    .barra-movel {
+        position: sticky;
+        bottom: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        background: var(--sc-noite);
+        color: #ffffff;
+    }
+
+    .barra-movel-resumo {
+        display: flex;
+        flex-direction: column;
+        font-size: var(--sc-fonte-xs);
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .barra-movel-resumo strong {
+        font-size: var(--sc-fonte-lg);
+        color: #ffffff;
+    }
+}
+
+@media (max-width: 700px) {
+    .hero {
+        padding: 1rem 1rem 4.5rem;
+    }
+
+    .marca-contexto {
+        display: none;
+    }
+
+    .indicadores {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .indicador {
+        flex: 0 0 auto;
+    }
+
+    .montagem {
+        padding: 0 1rem;
+    }
+
+    .conteudo-etapa {
+        margin: -3.5rem 1rem 0;
+        padding: 1rem;
+    }
+}

@@ -1,0 +1,424 @@
+{
+  "records": [
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta1"
+      },
+      "Name": "Transportadora Vale do Paraíba Ltda",
+      "Phone": "(12) 3921-4580",
+      "Website": "www.transvaleparaiba.com.br",
+      "Industry": "Transportation",
+      "Type": "Customer - Direct",
+      "Rating": "Hot",
+      "AnnualRevenue": 48000000,
+      "NumberOfEmployees": 210,
+      "BillingStreet": "Av. Independência, 1820",
+      "BillingCity": "São José dos Campos",
+      "BillingState": "SP",
+      "BillingPostalCode": "12230-000",
+      "BillingCountry": "Brasil",
+      "Description": "Frota de 60 veículos leves e utilitários. Renova 10 a 15 picapes por ano.",
+      "AccountSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta2"
+      },
+      "Name": "Construtora Alicerce Forte S.A.",
+      "Phone": "(31) 3274-1190",
+      "Website": "www.alicerceforte.com.br",
+      "Industry": "Construction",
+      "Type": "Customer - Direct",
+      "Rating": "Hot",
+      "AnnualRevenue": 92000000,
+      "NumberOfEmployees": 480,
+      "BillingStreet": "Rua Paraíba, 1352",
+      "BillingCity": "Belo Horizonte",
+      "BillingState": "MG",
+      "BillingPostalCode": "30130-141",
+      "BillingCountry": "Brasil",
+      "Description": "Compra picapes diesel para engenheiros de obra. Exige entrega com película e engate.",
+      "AccountSource": "Word of mouth"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta3"
+      },
+      "Name": "Clínica Odontológica Sorriso Pleno",
+      "Phone": "(41) 3015-7722",
+      "Website": "www.sorrisopleno.com.br",
+      "Industry": "Healthcare",
+      "Type": "Customer - Direct",
+      "Rating": "Warm",
+      "AnnualRevenue": 6200000,
+      "NumberOfEmployees": 38,
+      "BillingStreet": "Rua Comendador Araújo, 499",
+      "BillingCity": "Curitiba",
+      "BillingState": "PR",
+      "BillingPostalCode": "80420-000",
+      "BillingCountry": "Brasil",
+      "Description": "Sócios trocam de carro a cada 2 anos. Preferem SUV médio automático.",
+      "AccountSource": "Other"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta4"
+      },
+      "Name": "Agropecuária Santa Helena",
+      "Phone": "(64) 3611-2045",
+      "Website": "www.agrosantahelena.com.br",
+      "Industry": "Agriculture",
+      "Type": "Customer - Direct",
+      "Rating": "Hot",
+      "AnnualRevenue": 35000000,
+      "NumberOfEmployees": 95,
+      "BillingStreet": "Rodovia GO-174, Km 12",
+      "BillingCity": "Rio Verde",
+      "BillingState": "GO",
+      "BillingPostalCode": "75901-970",
+      "BillingCountry": "Brasil",
+      "Description": "Fazenda de soja e milho. Usa Hilux e S10 no campo, troca na colheita.",
+      "AccountSource": "Other"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta5"
+      },
+      "Name": "Locadora Rota Certa",
+      "Phone": "(48) 3333-8610",
+      "Website": "www.rotacertalocadora.com.br",
+      "Industry": "Transportation",
+      "Type": "Channel Partner / Reseller",
+      "Rating": "Hot",
+      "AnnualRevenue": 27000000,
+      "NumberOfEmployees": 120,
+      "BillingStreet": "Av. Beira-Mar Norte, 2600",
+      "BillingCity": "Florianópolis",
+      "BillingState": "SC",
+      "BillingPostalCode": "88015-200",
+      "BillingCountry": "Brasil",
+      "Description": "Locadora regional, compra lotes de compactos (Onix, HB20, Polo) com desconto de frota.",
+      "AccountSource": "Partner Referral"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta6"
+      },
+      "Name": "Escritório Mendes & Albuquerque Advogados",
+      "Phone": "(81) 3227-4410",
+      "Website": "www.mendesalbuquerque.adv.br",
+      "Industry": "Consulting",
+      "Type": "Customer - Direct",
+      "Rating": "Warm",
+      "AnnualRevenue": 8400000,
+      "NumberOfEmployees": 42,
+      "BillingStreet": "Av. Boa Viagem, 3480",
+      "BillingCity": "Recife",
+      "BillingState": "PE",
+      "BillingPostalCode": "51020-000",
+      "BillingCountry": "Brasil",
+      "Description": "Carros executivos para os sócios. Interesse em híbridos.",
+      "AccountSource": "Other"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta7"
+      },
+      "Name": "Distribuidora de Alimentos Bom Prato",
+      "Phone": "(85) 3264-9033",
+      "Website": "www.bompratodistribuidora.com.br",
+      "Industry": "Food & Beverage",
+      "Type": "Customer - Direct",
+      "Rating": "Warm",
+      "AnnualRevenue": 54000000,
+      "NumberOfEmployees": 260,
+      "BillingStreet": "Av. Washington Soares, 909",
+      "BillingCity": "Fortaleza",
+      "BillingState": "CE",
+      "BillingPostalCode": "60811-341",
+      "BillingCountry": "Brasil",
+      "Description": "Utilitários para vendedores externos. Prioriza consumo e custo de manutenção.",
+      "AccountSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta8"
+      },
+      "Name": "Mariana Costa Arquitetura",
+      "Phone": "(21) 98744-3120",
+      "Website": "www.marianacostaarq.com.br",
+      "Industry": "Engineering",
+      "Type": "Prospect",
+      "Rating": "Warm",
+      "AnnualRevenue": 1200000,
+      "NumberOfEmployees": 6,
+      "BillingStreet": "Rua Visconde de Pirajá, 330",
+      "BillingCity": "Rio de Janeiro",
+      "BillingState": "RJ",
+      "BillingPostalCode": "22410-002",
+      "BillingCountry": "Brasil",
+      "Description": "Arquiteta autônoma, primeira compra na loja. Quer SUV compacto até R$ 130 mil.",
+      "AccountSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta9"
+      },
+      "Name": "TecnoSul Soluções em TI",
+      "Phone": "(51) 3029-6640",
+      "Website": "www.tecnosulti.com.br",
+      "Industry": "Technology",
+      "Type": "Customer - Direct",
+      "Rating": "Cold",
+      "AnnualRevenue": 15000000,
+      "NumberOfEmployees": 85,
+      "BillingStreet": "Av. Ipiranga, 6681",
+      "BillingCity": "Porto Alegre",
+      "BillingState": "RS",
+      "BillingPostalCode": "90619-900",
+      "BillingCountry": "Brasil",
+      "Description": "Política de carro elétrico para diretoria. Avaliando BYD.",
+      "AccountSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta10"
+      },
+      "Name": "Hospital Veterinário Patas & Cia",
+      "Phone": "(19) 3252-7781",
+      "Website": "www.patasecia.vet.br",
+      "Industry": "Healthcare",
+      "Type": "Customer - Direct",
+      "Rating": "Warm",
+      "AnnualRevenue": 4800000,
+      "NumberOfEmployees": 30,
+      "BillingStreet": "Av. Norte-Sul, 1450",
+      "BillingCity": "Campinas",
+      "BillingState": "SP",
+      "BillingPostalCode": "13025-320",
+      "BillingCountry": "Brasil",
+      "Description": "Precisa de utilitário para atendimento domiciliar.",
+      "AccountSource": "Word of mouth"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta11"
+      },
+      "Name": "Rede de Farmácias Vida Mais",
+      "Phone": "(62) 3088-5521",
+      "Website": "www.farmaciasvidamais.com.br",
+      "Industry": "Retail",
+      "Type": "Customer - Direct",
+      "Rating": "Hot",
+      "AnnualRevenue": 120000000,
+      "NumberOfEmployees": 640,
+      "BillingStreet": "Av. T-63, 1296",
+      "BillingCity": "Goiânia",
+      "BillingState": "GO",
+      "BillingPostalCode": "74230-100",
+      "BillingCountry": "Brasil",
+      "Description": "38 lojas. Compra motos e carros para entrega e supervisores regionais.",
+      "AccountSource": "Other"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta12"
+      },
+      "Name": "Pousada Mar Azul",
+      "Phone": "(73) 3288-1406",
+      "Website": "www.pousadamarazul.com.br",
+      "Industry": "Hospitality",
+      "Type": "Prospect",
+      "Rating": "Cold",
+      "AnnualRevenue": 2100000,
+      "NumberOfEmployees": 22,
+      "BillingStreet": "Rua do Mucugê, 250",
+      "BillingCity": "Porto Seguro",
+      "BillingState": "BA",
+      "BillingPostalCode": "45816-000",
+      "BillingCountry": "Brasil",
+      "Description": "Busca SUV 7 lugares para traslado de hóspedes.",
+      "AccountSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta13"
+      },
+      "Name": "Engenharia Elétrica Voltagem",
+      "Phone": "(27) 3315-0948",
+      "Website": "www.voltagemengenharia.com.br",
+      "Industry": "Engineering",
+      "Type": "Customer - Direct",
+      "Rating": "Warm",
+      "AnnualRevenue": 19000000,
+      "NumberOfEmployees": 110,
+      "BillingStreet": "Av. Nossa Senhora da Penha, 1495",
+      "BillingCity": "Vitória",
+      "BillingState": "ES",
+      "BillingPostalCode": "29056-905",
+      "BillingCountry": "Brasil",
+      "Description": "Equipes de campo usam Strada e Toro. Contrato de manutenção incluso.",
+      "AccountSource": "Word of mouth"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta14"
+      },
+      "Name": "Colégio Horizonte do Saber",
+      "Phone": "(11) 2694-3301",
+      "Website": "www.horizontedosaber.com.br",
+      "Industry": "Education",
+      "Type": "Customer - Direct",
+      "Rating": "Cold",
+      "AnnualRevenue": 22000000,
+      "NumberOfEmployees": 190,
+      "BillingStreet": "Rua Tuiuti, 2125",
+      "BillingCity": "São Paulo",
+      "BillingState": "SP",
+      "BillingPostalCode": "03307-005",
+      "BillingCountry": "Brasil",
+      "Description": "Carros para a diretoria e um utilitário de manutenção.",
+      "AccountSource": "Web"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta15"
+      },
+      "Name": "Supermercados Preço Justo",
+      "Phone": "(34) 3236-7810",
+      "Website": "www.precojustosupermercados.com.br",
+      "Industry": "Retail",
+      "Type": "Customer - Direct",
+      "Rating": "Hot",
+      "AnnualRevenue": 210000000,
+      "NumberOfEmployees": 1450,
+      "BillingStreet": "Av. Rondon Pacheco, 3500",
+      "BillingCity": "Uberlândia",
+      "BillingState": "MG",
+      "BillingPostalCode": "38408-343",
+      "BillingCountry": "Brasil",
+      "Description": "Grande rede regional. Renovação anual de frota de supervisores.",
+      "AccountSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta16"
+      },
+      "Name": "Studio Fitness Movimento",
+      "Phone": "(92) 3584-2210",
+      "Website": "www.studiomovimento.com.br",
+      "Industry": "Recreation",
+      "Type": "Prospect",
+      "Rating": "Warm",
+      "AnnualRevenue": 3100000,
+      "NumberOfEmployees": 28,
+      "BillingStreet": "Av. Djalma Batista, 1661",
+      "BillingCity": "Manaus",
+      "BillingState": "AM",
+      "BillingPostalCode": "69050-010",
+      "BillingCountry": "Brasil",
+      "Description": "Dono quer trocar o sedã por SUV híbrido.",
+      "AccountSource": "Phone Inquiry"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta17"
+      },
+      "Name": "Logística Expressa Norte Sul",
+      "Phone": "(11) 4705-9920",
+      "Website": "www.expressanortesul.com.br",
+      "Industry": "Shipping",
+      "Type": "Customer - Channel",
+      "Rating": "Hot",
+      "AnnualRevenue": 76000000,
+      "NumberOfEmployees": 380,
+      "BillingStreet": "Rod. Anhanguera, Km 26",
+      "BillingCity": "Cajamar",
+      "BillingState": "SP",
+      "BillingPostalCode": "07790-000",
+      "BillingCountry": "Brasil",
+      "Description": "Centro de distribuição. Usa vans e picapes; avalia compra de 8 Toro em 2026.",
+      "AccountSource": "Word of mouth"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta18"
+      },
+      "Name": "Consultoria Ápice Finanças",
+      "Phone": "(61) 3047-5560",
+      "Website": "www.apicefinancas.com.br",
+      "Industry": "Finance",
+      "Type": "Customer - Direct",
+      "Rating": "Warm",
+      "AnnualRevenue": 9800000,
+      "NumberOfEmployees": 40,
+      "BillingStreet": "SCS Quadra 7, Bloco A, Sala 912",
+      "BillingCity": "Brasília",
+      "BillingState": "DF",
+      "BillingPostalCode": "70307-901",
+      "BillingCountry": "Brasil",
+      "Description": "Leasing de carros para consultores seniores.",
+      "AccountSource": "Other"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta19"
+      },
+      "Name": "Laticínios Serra Verde",
+      "Phone": "(32) 3215-4470",
+      "Website": "www.laticiniosserraverde.com.br",
+      "Industry": "Food & Beverage",
+      "Type": "Customer - Direct",
+      "Rating": "Cold",
+      "AnnualRevenue": 31000000,
+      "NumberOfEmployees": 150,
+      "BillingStreet": "Rua Halfeld, 805",
+      "BillingCity": "Juiz de Fora",
+      "BillingState": "MG",
+      "BillingPostalCode": "36010-002",
+      "BillingCountry": "Brasil",
+      "Description": "Compra picape a cada 3 anos para coleta de leite.",
+      "AccountSource": "Word of mouth"
+    },
+    {
+      "attributes": {
+        "type": "Account",
+        "referenceId": "Conta20"
+      },
+      "Name": "Energia Solar Sol Nascente",
+      "Phone": "(84) 3206-1880",
+      "Website": "www.solnascente.eco.br",
+      "Industry": "Energy",
+      "Type": "Prospect",
+      "Rating": "Hot",
+      "AnnualRevenue": 12500000,
+      "NumberOfEmployees": 60,
+      "BillingStreet": "Av. Engenheiro Roberto Freire, 2184",
+      "BillingCity": "Natal",
+      "BillingState": "RN",
+      "BillingPostalCode": "59090-000",
+      "BillingCountry": "Brasil",
+      "Description": "Equipes de instalação em todo o RN. Interesse em picape elétrica/híbrida.",
+      "AccountSource": "Web"
+    }
+  ]
+}

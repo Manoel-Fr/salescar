@@ -1,0 +1,166 @@
+<template>
+    <div class="app">
+        <header class={classeHero}>
+            <div class="hero-topo">
+                <div class="marca">
+                    <span class="marca-selo" aria-hidden="true">SC</span>
+                    <span class="marca-nome">SalesCar</span>
+                    <span class="marca-contexto">{titulo}</span>
+                </div>
+
+                <nav aria-label="Etapas da venda">
+                    <ol class="etapas">
+                        <template for:each={etapas} for:item="etapa">
+                            <li key={etapa.nome}>
+                                <button
+                                    type="button"
+                                    class={etapa.classe}
+                                    data-etapa={etapa.nome}
+                                    aria-current={etapa.ariaCurrent}
+                                    disabled={etapa.bloqueada}
+                                    title={etapa.dica}
+                                    onclick={handleNavegar}>
+                                    <span class="etapa-numero" aria-hidden="true">{etapa.numero}</span>
+                                    {etapa.titulo}
+                                </button>
+                            </li>
+                        </template>
+                    </ol>
+                </nav>
+
+                <template lwc:if={temNegociacao}>
+                    <button type="button" class="nova-negociacao" onclick={handleNovaNegociacao}>
+                        <lightning-icon icon-name="utility:refresh" size="x-small" variant="inverse"></lightning-icon>
+                        Nova negociação
+                    </button>
+                </template>
+            </div>
+
+            <div class="hero-corpo">
+                <div class="hero-texto">
+                    <p class="hero-saudacao">{saudacao}</p>
+                    <h1 class="hero-titulo">{manchete}</h1>
+                </div>
+
+                <dl class="indicadores">
+                    <div class="indicador">
+                        <dt>Disponíveis</dt>
+                        <dd class="sc-numero">{textoDisponiveis}</dd>
+                        <span class="indicador-nota">{textoTotalEstoque}</span>
+                    </div>
+                    <div class="indicador">
+                        <dt>Valor disponível</dt>
+                        <dd class="sc-numero">{valorDisponivel}</dd>
+                        <span class="indicador-nota">em estoque</span>
+                    </div>
+                    <div class="indicador indicador-destaque">
+                        <dt>Na negociação</dt>
+                        <dd class="sc-numero">{totalNegociacaoCompacto}</dd>
+                        <span class="indicador-nota">{textoQuantidade}</span>
+                    </div>
+                </dl>
+            </div>
+        </header>
+
+        <template lwc:if={isMontagem}>
+            <div class="montagem">
+                <div class="vitrine sc-painel">
+                    <c-estoque-veiculos
+                        ids-no-carrinho={idsNoCarrinho}
+                        onaddcarrinho={handleAddCarrinho}
+                        onresumoestoque={handleResumoEstoque}>
+                    </c-estoque-veiculos>
+                </div>
+
+                <aside class="negociacao" aria-labelledby="titulo-negociacao" lwc:ref="negociacao">
+                    <div class="ticket">
+                        <div class="ticket-topo">
+                            <h2 class="ticket-titulo" id="titulo-negociacao">Negociação</h2>
+                            <span class="ticket-contagem">{textoQuantidade}</span>
+                        </div>
+                        <div class="ticket-corpo">
+                            <c-clientes-vendas
+                                cliente-selecionado={clienteSelecionado}
+                                onselecionarcliente={handleSelecionarCliente}
+                                onremovercliente={handleRemoverCliente}>
+                            </c-clientes-vendas>
+                            <c-carrinho-vendas
+                                itens-carrinho={itensCarrinho}
+                                cliente-selecionado={clienteSelecionado}
+                                onfinalizar={handleFinalizar}
+                                onremoveritem={handleRemoverItem}
+                                onlimparcarrinho={handleLimparTodoCarrinho}>
+                            </c-carrinho-vendas>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Só em telas estreitas: o painel fica abaixo do estoque, então mantemos o total à vista -->
+            <div class="barra-movel">
+                <span class="barra-movel-resumo">
+                    <span>{textoQuantidade}</span>
+                    <strong class="sc-numero">{totalCarrinho}</strong>
+                </span>
+                <button type="button" class="sc-btn sc-btn-principal" onclick={handleVerNegociacao}>
+                    Ver negociação
+                </button>
+            </div>
+        </template>
+
+        <template lwc:else>
+            <div class="conteudo-etapa sc-painel">
+                <template lwc:if={isCliente}>
+                    <c-cliente-perfil
+                        cliente-selecionado={clienteSelecionado}
+                        onselecionarcliente={handleSelecionarCliente}>
+                    </c-cliente-perfil>
+                </template>
+
+                <template lwc:elseif={isCredito}>
+                    <c-credito-vendas
+                        valor-bem={valorNegociacao}
+                        cliente={clienteSelecionado}
+                        oferta-escolhida={ofertaCredito}
+                        onofertaselecionada={handleOfertaSelecionada}
+                        onpular={handlePularCredito}>
+                    </c-credito-vendas>
+                </template>
+
+                <template lwc:elseif={isProposta}>
+                    <c-proposta-vendas
+                        cliente-selecionado={clienteSelecionado}
+                        itens-carrinho={itensCarrinho}
+                        oferta-credito={ofertaCredito}
+                        registrando={registrandoVenda}
+                        oncancelar={handleCancelarProposta}
+                        onfinalizarvenda={handleFinalizarVenda}>
+                    </c-proposta-vendas>
+                </template>
+
+                <!-- Navegação entre etapas (a proposta tem as próprias ações no ticket) -->
+                <template lwc:if={proximaEtapa}>
+                    <div class="rodape-etapa">
+                        <button type="button" class="sc-btn sc-btn-secundario" onclick={handleVoltar}>
+                            <lightning-icon icon-name="utility:chevronleft" size="x-small"></lightning-icon>
+                            {rotuloVoltar}
+                        </button>
+                        <div class="rodape-direita">
+                            <template lwc:if={dicaContinuar}>
+                                <span class="rodape-dica">{dicaContinuar}</span>
+                            </template>
+                            <button
+                                type="button"
+                                class="sc-btn sc-btn-principal"
+                                disabled={continuarBloqueado}
+                                onclick={handleContinuar}>
+                                {rotuloContinuar}
+                                <lightning-icon icon-name="utility:chevronright" size="x-small" variant="inverse"></lightning-icon>
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

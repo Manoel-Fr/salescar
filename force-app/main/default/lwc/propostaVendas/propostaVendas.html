@@ -1,0 +1,354 @@
+<template>
+    <template lwc:if={faltaDados}>
+        <div class="pendencias" role="status">
+            <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+            <div>
+                <p class="pendencias-titulo">Antes de montar a proposta</p>
+                <ul class="pendencias-lista">
+                    <template lwc:if={semVeiculos}>
+                        <li>Adicione pelo menos um veículo à negociação.</li>
+                    </template>
+                    <template lwc:if={semCliente}>
+                        <li>Escolha o cliente no painel de negociação.</li>
+                    </template>
+                </ul>
+                <button type="button" class="sc-btn sc-btn-secundario" onclick={handleCancelar}>Voltar à negociação</button>
+            </div>
+        </div>
+    </template>
+
+    <template lwc:else>
+        <div class="proposta">
+            <div class="coluna sc-rolagem">
+                <!-- Para quem e o quê -->
+                <div class="cabecalho">
+                    <div class="cliente">
+                        <span class="avatar" aria-hidden="true">{inicialCliente}</span>
+                        <div class="cliente-dados">
+                            <p class="cliente-rotulo">Proposta para</p>
+                            <p class="cliente-nome">{clienteSelecionado.Name}</p>
+                            <p class="cliente-contato sc-numero">{contatoCliente}</p>
+                        </div>
+                    </div>
+                    <ul class="carros" aria-label="Veículos da proposta">
+                        <template for:each={veiculosExibidos} for:item="veiculo">
+                            <li key={veiculo.Id} class="carro">
+                                <div class="carro-foto">
+                                    <template lwc:if={veiculo.imagemUrl}>
+                                        <img src={veiculo.imagemUrl} alt="" loading="lazy" />
+                                    </template>
+                                </div>
+                                <div class="carro-dados">
+                                    <p class="carro-nome">{veiculo.marca} {veiculo.modelo}</p>
+                                    <p class="carro-detalhe">{veiculo.ano}</p>
+                                </div>
+                                <span class="carro-preco sc-numero">{veiculo.precoFormatado}</span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+
+                <!-- 1. Forma de pagamento -->
+                <fieldset class="secao">
+                    <legend class="secao-titulo"><span class="secao-numero">1</span>Forma de pagamento</legend>
+                    <div class="formas">
+                        <template for:each={formas} for:item="forma">
+                            <label key={forma.valor} class={forma.classe}>
+                                <input
+                                    type="radio"
+                                    name="formaPagamento"
+                                    class="radio-oculto"
+                                    value={forma.valor}
+                                    checked={forma.ativa}
+                                    onchange={handleFormaPagamento} />
+                                <span class="forma-icone">
+                                    <lightning-icon icon-name={forma.icone} size="small"></lightning-icon>
+                                </span>
+                                <span class="forma-titulo">{forma.titulo}</span>
+                                <span class="forma-descricao">{forma.descricao}</span>
+                            </label>
+                        </template>
+                    </div>
+                </fieldset>
+
+                <!-- 2. Condições (financiamento / consórcio) -->
+                <template lwc:if={temParcelamento}>
+                    <fieldset class="secao">
+                        <legend class="secao-titulo"><span class="secao-numero">2</span>Condições</legend>
+
+                        <template lwc:if={textoOferta}>
+                            <div class="oferta-banco">
+                                <lightning-icon icon-name="utility:success" size="x-small" variant="success"></lightning-icon>
+                                <span>{textoOferta}</span>
+                                <template lwc:if={ofertaAlterada}>
+                                    <span class="oferta-alerta">Condições alteradas: confirme com o banco.</span>
+                                </template>
+                            </div>
+                        </template>
+
+                        <div class="condicoes">
+                            <template lwc:if={isFinanciamento}>
+                                <div class="controle-deslizante">
+                                    <div class="deslizante-topo">
+                                        <label for="entrada" class="campo-rotulo">Entrada</label>
+                                        <span class="deslizante-valor sc-numero">{textoEntradaPercentual} · {entradaFormatada}</span>
+                                    </div>
+                                    <input
+                                        id="entrada"
+                                        type="range"
+                                        class="deslizante"
+                                        min="0"
+                                        max="90"
+                                        step="5"
+                                        value={entradaPercentual}
+                                        data-campo="entradaPercentual"
+                                        oninput={handleCampo} />
+                                </div>
+                                <lightning-input
+                                    class="campo-taxa"
+                                    type="number"
+                                    label="Taxa de juros (% ao mês)"
+                                    value={taxaMensal}
+                                    min="0"
+                                    max="10"
+                                    step="0.01"
+                                    data-campo="taxaMensal"
+                                    message-when-range-overflow="Taxa acima de 10% ao mês parece engano."
+                                    onchange={handleCampo}>
+                                </lightning-input>
+                            </template>
+                            <template lwc:if={isConsorcio}>
+                                <lightning-input
+                                    class="campo-taxa"
+                                    type="number"
+                                    label="Taxa de administração total (%)"
+                                    value={taxaAdministracao}
+                                    min="0"
+                                    max="40"
+                                    step="0.5"
+                                    data-campo="taxaAdministracao"
+                                    onchange={handleCampo}>
+                                </lightning-input>
+                            </template>
+                        </div>
+
+                        <p class="campo-rotulo prazos-rotulo">Prazo</p>
+                        <div class="prazos" role="radiogroup" aria-label="Número de parcelas">
+                            <template for:each={prazos} for:item="opcao">
+                                <label key={opcao.prazo} class={opcao.classe}>
+                                    <input
+                                        type="radio"
+                                        name="prazo"
+                                        class="radio-oculto"
+                                        value={opcao.prazo}
+                                        checked={opcao.ativo}
+                                        onchange={handlePrazo} />
+                                    <span class="prazo-vezes">{opcao.prazo}x</span>
+                                    <span class="prazo-parcela sc-numero">{opcao.parcelaFormatada}</span>
+                                </label>
+                            </template>
+                        </div>
+                    </fieldset>
+                </template>
+
+                <!-- 3. Desconto e troca -->
+                <fieldset class="secao">
+                    <legend class="secao-titulo"><span class="secao-numero">{numeroSecaoAjustes}</span>Desconto e troca</legend>
+
+                    <div class="controle-deslizante">
+                        <div class="deslizante-topo">
+                            <label for="desconto" class="campo-rotulo">Desconto</label>
+                            <span class="deslizante-valor sc-numero">{textoDesconto} · {valorDescontoFormatado}</span>
+                        </div>
+                        <input
+                            id="desconto"
+                            type="range"
+                            class="deslizante"
+                            min="0"
+                            max={descontoMaximo}
+                            step="0.5"
+                            value={percentualDesconto}
+                            oninput={handleDesconto} />
+                        <div class="atalhos" role="group" aria-label="Descontos rápidos">
+                            <template for:each={atalhosDesconto} for:item="atalho">
+                                <button
+                                    key={atalho.valor}
+                                    type="button"
+                                    class={atalho.classe}
+                                    data-valor={atalho.valor}
+                                    aria-pressed={atalho.ariaPressed}
+                                    onclick={handleAtalhoDesconto}>
+                                    {atalho.rotulo}
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+
+                    <template lwc:if={mostrarMargem}>
+                        <div class={margemClasse}>
+                            <div class="margem-topo">
+                                <span>Margem da loja após desconto e comissão</span>
+                                <strong class="sc-numero">{margemPercentualTexto} · {margemLucroTexto}</strong>
+                            </div>
+                            <div class="margem-trilho"><span class="margem-barra" style={margemEstilo}></span></div>
+                            <template lwc:if={margemAlerta}>
+                                <p class="margem-alerta" aria-live="polite">{margemAlerta}</p>
+                            </template>
+                        </div>
+                    </template>
+
+                    <div class="troca">
+                        <lightning-input
+                            type="toggle"
+                            label="Cliente vai dar um carro na troca"
+                            message-toggle-active="Sim"
+                            message-toggle-inactive="Não"
+                            checked={temTroca}
+                            onchange={handleTroca}>
+                        </lightning-input>
+                        <template lwc:if={temTroca}>
+                            <div class="troca-campos">
+                                <lightning-input
+                                    label="Modelo"
+                                    placeholder="Ex.: Fiat Argo"
+                                    value={trocaModelo}
+                                    data-campo="trocaModelo"
+                                    onchange={handleCampo}>
+                                </lightning-input>
+                                <lightning-input
+                                    label="Ano"
+                                    placeholder="2019"
+                                    max-length="4"
+                                    value={trocaAno}
+                                    data-campo="trocaAno"
+                                    onchange={handleCampo}>
+                                </lightning-input>
+                                <lightning-input
+                                    type="number"
+                                    formatter="currency"
+                                    label="Valor avaliado"
+                                    min="0"
+                                    step="0.01"
+                                    value={trocaValor}
+                                    data-campo="trocaValor"
+                                    onchange={handleCampo}>
+                                </lightning-input>
+                            </div>
+                        </template>
+                    </div>
+                </fieldset>
+
+                <!-- 4. Validade e observações -->
+                <fieldset class="secao">
+                    <legend class="secao-titulo"><span class="secao-numero">{numeroSecaoDetalhes}</span>Validade e observações</legend>
+                    <div class="detalhes">
+                        <lightning-input
+                            class="campo-validade"
+                            type="date"
+                            label="Válida até"
+                            value={validade}
+                            min={hoje}
+                            required
+                            data-campo="validade"
+                            message-when-range-underflow="A validade não pode ser no passado."
+                            onchange={handleCampo}>
+                        </lightning-input>
+                        <lightning-textarea
+                            class="campo-observacoes"
+                            label="Observações"
+                            placeholder="Ex.: prazo de entrega, acessórios inclusos, revisão grátis"
+                            value={observacoes}
+                            max-length="500"
+                            data-campo="observacoes"
+                            onchange={handleCampo}>
+                        </lightning-textarea>
+                    </div>
+                </fieldset>
+            </div>
+
+            <!-- Ticket de resumo -->
+            <aside class="ticket" aria-label="Resumo da proposta">
+                <div class="ticket-topo">
+                    <p class="ticket-rotulo">Valor final</p>
+                    <p class="ticket-valor sc-numero" aria-live="polite">{valorFinalFormatado}</p>
+                    <template lwc:if={temParcelamento}>
+                        <p class="ticket-parcela sc-numero">
+                            <span>{textoAntesParcela}</span>
+                            <strong>{parcelaFormatada}</strong>
+                        </p>
+                    </template>
+                </div>
+
+                <div class="ticket-corpo">
+                    <div class="sc-resumo-linha">
+                        <span>Valor dos veículos</span>
+                        <span>{subtotalFormatado}</span>
+                    </div>
+                    <template lwc:if={temDesconto}>
+                        <div class="sc-resumo-linha linha-abate">
+                            <span>Desconto ({textoDesconto})</span>
+                            <span>- {valorDescontoFormatado}</span>
+                        </div>
+                    </template>
+                    <template lwc:if={temValorTroca}>
+                        <div class="sc-resumo-linha linha-abate">
+                            <span>{rotuloTroca}</span>
+                            <span>- {valorTrocaFormatado}</span>
+                        </div>
+                    </template>
+
+                    <template lwc:if={temParcelamento}>
+                        <div class="ticket-divisor"></div>
+                        <template lwc:if={isFinanciamento}>
+                            <div class="sc-resumo-linha">
+                                <span>Valor financiado</span>
+                                <span>{financiadoFormatado}</span>
+                            </div>
+                        </template>
+                        <div class="sc-resumo-linha">
+                            <span>{rotuloJuros}</span>
+                            <span>{jurosFormatado}</span>
+                        </div>
+                        <div class="sc-resumo-linha">
+                            <span>Total pago pelo cliente</span>
+                            <span>{totalPagoFormatado}</span>
+                        </div>
+                        <p class="ticket-nota">{textoTaxa}</p>
+                    </template>
+
+                    <div class="ticket-divisor"></div>
+                    <div class="sc-resumo-linha">
+                        <span>Válida até</span>
+                        <span>{validadeFormatada}</span>
+                    </div>
+
+                    <div class="acoes">
+                        <button
+                            type="button"
+                            class="sc-btn sc-btn-principal sc-btn-largo"
+                            disabled={registrando}
+                            onclick={handleFinalizarVenda}>
+                            <template lwc:if={registrando}>
+                                <span class="girando" aria-hidden="true"></span>
+                            </template>
+                            {rotuloFinalizar}
+                        </button>
+                        <div class="acoes-compartilhar">
+                            <a class="sc-btn sc-btn-secundario btn-whatsapp" href={linkWhatsapp} target="_blank" rel="noopener noreferrer">
+                                <lightning-icon icon-name="utility:chat" size="x-small"></lightning-icon>
+                                WhatsApp
+                            </a>
+                            <button type="button" class="sc-btn sc-btn-secundario" onclick={handleCopiar}>
+                                <lightning-icon icon-name="utility:copy" size="x-small"></lightning-icon>
+                                Copiar resumo
+                            </button>
+                        </div>
+                        <button type="button" class="sc-btn sc-btn-texto voltar" onclick={handleCancelar}>
+                            Voltar ao crédito
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </template>
+</template>

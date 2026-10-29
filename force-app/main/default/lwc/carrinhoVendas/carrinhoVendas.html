@@ -1,0 +1,76 @@
+<template>
+    <div class="bloco">
+        <div class="cabeca">
+            <p class="sc-rotulo">{rotuloVeiculos}</p>
+            <template lwc:if={temItens}>
+                <button type="button" class="sc-btn sc-btn-texto" onclick={handleLimparCarrinho}>Esvaziar</button>
+            </template>
+        </div>
+
+        <template lwc:if={temItens}>
+            <ul class="itens">
+                <template for:each={itensExibidos} for:item="item">
+                    <li key={item.Id} class="item">
+                        <div class="miniatura">
+                            <template lwc:if={item.imagemUrl}>
+                                <img src={item.imagemUrl} alt="" loading="lazy" />
+                            </template>
+                        </div>
+                        <div class="dados">
+                            <p class="nome">{item.marca} {item.modelo}</p>
+                            <p class="detalhe sc-numero">{item.detalhe}</p>
+                        </div>
+                        <span class="valor sc-numero">{item.precoFormatado}</span>
+                        <button
+                            type="button"
+                            class="sc-btn sc-btn-icone"
+                            data-id={item.Id}
+                            aria-label={item.textoRemover}
+                            title={item.textoRemover}
+                            onclick={handleRemoverItem}>
+                            <lightning-icon icon-name="utility:close" size="xx-small"></lightning-icon>
+                        </button>
+                    </li>
+                </template>
+            </ul>
+        </template>
+
+        <template lwc:else>
+            <div class="vazio">
+                <lightning-icon icon-name="utility:cart" size="small"></lightning-icon>
+                <p>Clique em <strong>Adicionar</strong> num carro do estoque para incluí-lo aqui.</p>
+            </div>
+        </template>
+    </div>
+
+    <div class="totais">
+        <div class="sc-resumo-linha sc-resumo-total">
+            <span>Total</span>
+            <span class="sc-resumo-valor">{subtotalFormatado}</span>
+        </div>
+        <template lwc:if={temComissao}>
+            <div class="sc-resumo-linha linha-comissao">
+                <span>Sua comissão</span>
+                <span>{comissaoFormatado}</span>
+            </div>
+        </template>
+        <template lwc:if={mostrarLucro}>
+            <div class="sc-resumo-linha">
+                <span>Lucro bruto da loja</span>
+                <span>{lucroFormatado}</span>
+            </div>
+        </template>
+    </div>
+
+    <button
+        type="button"
+        class="sc-btn sc-btn-principal sc-btn-largo botao-proposta"
+        disabled={bloqueado}
+        onclick={handleFinalizar}>
+        Continuar
+        <lightning-icon icon-name="utility:chevronright" size="x-small" variant="inverse"></lightning-icon>
+    </button>
+    <template lwc:if={pendencia}>
+        <p class="pendencia" aria-live="polite">{pendencia}</p>
+    </template>
+</template>

@@ -1,0 +1,449 @@
+@import 'c/salesCarStyles';
+
+/* ---------- Ferramentas ---------- */
+.ferramentas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.busca {
+    flex: 1 1 18rem;
+}
+
+.filtro {
+    flex: 0 1 11rem;
+}
+
+/* Marcas como chips com contagem: um clique filtra, sem abrir lista */
+.marcas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.25rem;
+    padding: 0 0.875rem;
+    border: 1px solid var(--sc-borda);
+    border-radius: 999px;
+    background: var(--sc-superficie);
+    color: var(--sc-texto-2);
+    font: inherit;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.chip:hover {
+    border-color: var(--sc-marca);
+    color: var(--sc-marca);
+}
+
+.chip:focus-visible {
+    outline: 3px solid var(--sc-marca);
+    outline-offset: 2px;
+}
+
+.chip-quantidade {
+    min-width: 1.25rem;
+    padding: 0 0.375rem;
+    border-radius: 999px;
+    background: var(--sc-fundo);
+    font-size: var(--sc-fonte-xs);
+    text-align: center;
+}
+
+.chip-ativo,
+.chip-ativo:hover {
+    border-color: var(--sc-noite);
+    background: var(--sc-noite);
+    color: #ffffff;
+}
+
+.chip-ativo .chip-quantidade {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.contagem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0 0.75rem;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 600;
+    color: var(--sc-texto-2);
+}
+
+/* ---------- Vitrine ---------- */
+/*
+ * Até 3 colunas: cada coluna tem no mínimo 1/3 da largura (então nunca passa de 3)
+ * e no mínimo 16rem (então cai para 2 e 1 em telas estreitas). Independe do zoom do navegador.
+ */
+.grade {
+    --gap-grade: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(max(16rem, calc((100% - 2 * var(--gap-grade)) / 3)), 1fr));
+    gap: var(--gap-grade);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/*
+ * No desktop a vitrine rola por dentro: busca, filtros e o painel de negociação
+ * continuam à vista. A folga interna evita cortar a sombra e o "levantar" do card no hover.
+ * No celular/tablet a página rola normalmente (rolagem dentro de rolagem atrapalha no toque).
+ */
+@media (min-width: 1101px) {
+    .grade {
+        max-height: max(26rem, calc(100vh - 21rem));
+        margin: 0 -0.5rem;
+        padding: 0.5rem 0.75rem 1rem 0.5rem;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        scrollbar-color: var(--sc-borda-forte) transparent;
+    }
+
+    .grade::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .grade::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        background: var(--sc-borda-forte);
+    }
+
+    .grade::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+.veiculo {
+    display: flex;
+    flex-direction: column;
+    background: var(--sc-superficie);
+    border-radius: var(--sc-raio-card);
+    box-shadow: var(--sc-sombra-card);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: entrar 0.45s ease both;
+}
+
+.veiculo:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sc-sombra-elevada);
+}
+
+.veiculo-escolhido {
+    box-shadow: 0 0 0 2px var(--sc-marca), var(--sc-sombra-elevada);
+}
+
+/* ---------- Foto de cinema: legenda sobre degradê ---------- */
+.foto {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--sc-noite);
+    overflow: hidden;
+}
+
+.foto img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.veiculo:hover .foto img {
+    transform: scale(1.05);
+}
+
+.foto::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 22, 48, 0.35) 0%, transparent 28%, transparent 48%, rgba(10, 22, 48, 0.88) 100%);
+    pointer-events: none;
+}
+
+.foto-ausente {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.foto-topo {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    background: rgba(10, 22, 48, 0.55);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    font-size: var(--sc-fonte-xs);
+    font-weight: 700;
+}
+
+.status::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #94a3b8;
+}
+
+.status-disponivel::before {
+    background: #4ade80;
+    box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.25);
+}
+
+.status-reservado::before {
+    background: #fbbf24;
+}
+
+.status-vendido::before {
+    background: #f87171;
+}
+
+.selo-zero {
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #fde68a, #f59e0b);
+    color: #3b2400;
+    font-size: var(--sc-fonte-xs);
+    font-weight: 800;
+}
+
+/* Canto inferior direito, alinhado ao nome: não cobre o carro */
+.selo-escolhido {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.875rem;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: 999px;
+    background: var(--sc-marca);
+    color: #ffffff;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(47, 107, 255, 0.5);
+    animation: aparecer 0.3s ease both;
+}
+
+.foto-legenda {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0.875rem;
+    z-index: 1;
+    color: #ffffff;
+}
+
+/* Abre espaço para o selo só quando o carro está na negociação */
+.veiculo-escolhido .foto-legenda {
+    right: 9.5rem;
+}
+
+.marca {
+    margin: 0;
+    font-size: var(--sc-fonte-xs);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.modelo {
+    margin: 0;
+    font-size: var(--sc-fonte-xl);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.veiculo-vendido .foto img {
+    filter: grayscale(1);
+    opacity: 0.55;
+}
+
+/* ---------- Ficha ---------- */
+.corpo {
+    flex: 1;
+    padding: 1rem 1rem 0.5rem;
+}
+
+/* 2×2: cabe em qualquer largura de card sem cortar "Combustível" */
+.ficha {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.625rem 0.75rem;
+    margin: 0;
+}
+
+.ficha dt {
+    font-size: 0.6875rem;
+    color: var(--sc-texto-3);
+}
+
+.ficha dd {
+    margin: 0.125rem 0 0;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Uma linha só: se faltar espaço, a placa encurta com "…" em vez de quebrar com separador solto */
+.detalhes {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items: center;
+    gap: 0.375rem;
+    margin: 0.75rem 0 0;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--sc-borda);
+    font-size: var(--sc-fonte-xs);
+    color: var(--sc-texto-2);
+}
+
+.amostra-cor {
+    flex-shrink: 0;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.2);
+}
+
+.detalhe-sep::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    margin: 0 0.375rem 0.15rem 0.125rem;
+    border-radius: 50%;
+    background: var(--sc-borda-forte);
+}
+
+.placa {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+}
+
+/* ---------- Preço e ação ---------- */
+/* Preço em cima, botão na largura toda embaixo: nunca corta, mesmo em card estreito */
+.rodape {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem 1rem;
+}
+
+.preco-bloco {
+    display: flex;
+    flex-direction: column;
+}
+
+.preco-rotulo {
+    font-size: 0.6875rem;
+    color: var(--sc-texto-3);
+}
+
+.btn-carrinho {
+    width: 100%;
+    white-space: nowrap;
+}
+
+.veiculo-escolhido .btn-carrinho:disabled {
+    background: var(--sc-marca-suave);
+    color: var(--sc-marca);
+}
+
+/* ---------- Carregando: esqueleto com brilho ---------- */
+.esqueleto {
+    height: 22rem;
+    border-radius: var(--sc-raio-card);
+    background: linear-gradient(90deg, #e3e8ef 0%, #f3f5f9 50%, #e3e8ef 100%);
+    background-size: 200% 100%;
+    animation: brilhar 1.2s linear infinite;
+}
+
+@keyframes entrar {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes brilhar {
+    from {
+        background-position: 200% 0;
+    }
+    to {
+        background-position: -200% 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .veiculo,
+    .selo-escolhido,
+    .esqueleto {
+        animation: none;
+    }
+
+    .veiculo:hover,
+    .veiculo:hover .foto img {
+        transform: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .filtro {
+        flex: 1 1 8rem;
+    }
+}

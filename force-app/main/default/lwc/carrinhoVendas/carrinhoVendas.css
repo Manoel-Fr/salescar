@@ -1,0 +1,164 @@
+@import 'c/salesCarStyles';
+
+.bloco {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--sc-borda);
+}
+
+.cabeca {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.itens {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.item {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.5rem 0;
+}
+
+.item + .item {
+    border-top: 1px solid var(--sc-borda);
+}
+
+.miniatura {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--sc-raio-etiqueta);
+    background: var(--sc-fundo);
+    overflow: hidden;
+}
+
+.miniatura img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nome {
+    margin: 0;
+    font-size: var(--sc-fonte-sm);
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.detalhe {
+    margin: 0;
+    font-size: var(--sc-fonte-xs);
+    color: var(--sc-texto-3);
+}
+
+.valor {
+    font-size: var(--sc-fonte-sm);
+    font-weight: 700;
+}
+
+.vazio {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 1px dashed var(--sc-borda-forte);
+    border-radius: var(--sc-raio-controle);
+    font-size: var(--sc-fonte-sm);
+    color: var(--sc-texto-2);
+}
+
+.vazio p {
+    margin: 0;
+}
+
+.totais .sc-resumo-total {
+    margin-top: 0;
+    border-top: 0;
+}
+
+.linha-comissao {
+    color: var(--sc-verde);
+    font-weight: 700;
+}
+
+.botao-proposta {
+    margin-top: 1rem;
+}
+
+.pendencia {
+    margin: 0.5rem 0 0;
+    font-size: var(--sc-fonte-xs);
+    color: var(--sc-texto-3);
+    text-align: center;
+}
+
+/* ---------- Ticket: canhoto escuro com o total ---------- */
+.totais {
+    position: relative;
+    margin: 1rem -1.25rem 0;
+    padding: 1.25rem 1.25rem 1rem;
+    background: var(--sc-degrade-noite);
+    color: #ffffff;
+}
+
+/* Picote do ticket */
+.totais::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: radial-gradient(circle at 6px 6px, var(--sc-superficie) 5px, transparent 5.5px) repeat-x;
+    background-size: 16px 12px;
+}
+
+.totais .sc-resumo-linha {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.totais .sc-resumo-total {
+    color: #ffffff;
+}
+
+.totais .sc-resumo-valor {
+    font-size: 2rem;
+}
+
+.totais .linha-comissao {
+    color: #4ade80;
+}
+
+.totais + .botao-proposta,
+.botao-proposta {
+    margin-top: 1rem;
+}
+
+/* Item recém-adicionado desliza para dentro */
+.item {
+    animation: entrar-item 0.35s ease both;
+}
+
+@keyframes entrar-item {
+    from {
+        opacity: 0;
+        transform: translateX(16px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .item {
+        animation: none;
+    }
+}

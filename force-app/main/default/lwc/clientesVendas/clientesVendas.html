@@ -1,0 +1,57 @@
+<template>
+    <div class="bloco">
+        <p class="sc-rotulo">Cliente</p>
+
+        <template lwc:if={temSelecionado}>
+            <div class="selecionado">
+                <span class="avatar" aria-hidden="true">{inicialSelecionado}</span>
+                <div class="dados">
+                    <p class="nome">{clienteSelecionado.Name}</p>
+                    <p class="contato sc-numero">{contatoSelecionado}</p>
+                </div>
+                <button type="button" class="sc-btn sc-btn-texto" onclick={handleTrocarCliente}>Trocar</button>
+            </div>
+        </template>
+
+        <template lwc:else>
+            <lightning-input
+                type="search"
+                label="Buscar cliente"
+                variant="label-hidden"
+                placeholder="Nome, telefone ou site do cliente"
+                value={termoBusca}
+                is-loading={isLoading}
+                onchange={handleBusca}>
+            </lightning-input>
+
+            <template lwc:if={erroMensagem}>
+                <p class="aviso aviso-erro" role="alert">{erroMensagem}</p>
+            </template>
+
+            <template lwc:if={temResultados}>
+                <ul class="resultados" aria-label="Clientes encontrados">
+                    <template for:each={resultados} for:item="cliente">
+                        <li key={cliente.Id}>
+                            <button
+                                type="button"
+                                class="resultado"
+                                data-id={cliente.Id}
+                                aria-label={cliente.textoAcao}
+                                onclick={handleSelecionarCliente}>
+                                <span class="avatar avatar-pequeno" aria-hidden="true">{cliente.inicial}</span>
+                                <span class="dados">
+                                    <span class="nome">{cliente.Name}</span>
+                                    <span class="contato sc-numero">{cliente.contato}</span>
+                                </span>
+                            </button>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+
+            <template lwc:if={semResultados}>
+                <p class="aviso">Nenhum cliente encontrado. Confira a grafia ou busque pelo telefone.</p>
+            </template>
+        </template>
+    </div>
+</template>

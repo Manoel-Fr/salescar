@@ -1,0 +1,161 @@
+<template>
+    <div class="etapa">
+        <!-- Condições da simulação -->
+        <aside class="simulador sc-painel" aria-label="Condições da simulação">
+            <div class="cliente">
+                <div class="medidor" style={estiloMedidor} role="img" aria-label={faixaScore.rotulo}>
+                    <span class="medidor-numero sc-numero">{score}</span>
+                    <span class="medidor-faixa">{faixaScore.rotulo}</span>
+                </div>
+                <div class="cliente-dados">
+                    <p class="cliente-rotulo">Score de crédito simulado</p>
+                    <p class="cliente-nome">{cliente.Name}</p>
+                </div>
+            </div>
+
+            <div class="campos">
+                <div class="valor-bem">
+                    <span class="campo-rotulo">Valor dos veículos</span>
+                    <span class="valor-bem-numero sc-numero">{valorBemFormatado}</span>
+                </div>
+
+                <div class="controle">
+                    <div class="controle-topo">
+                        <label for="entrada" class="campo-rotulo">Entrada</label>
+                        <span class="controle-valor sc-numero">{textoEntrada}</span>
+                    </div>
+                    <input
+                        id="entrada"
+                        type="range"
+                        class="deslizante"
+                        min="0"
+                        max="80"
+                        step="5"
+                        value={entradaPercentual}
+                        oninput={handleEntrada} />
+                </div>
+
+                <div>
+                    <p class="campo-rotulo">Prazo</p>
+                    <div class="chips" role="group" aria-label="Prazo">
+                        <template for:each={prazos} for:item="opcao">
+                            <button
+                                key={opcao.prazo}
+                                type="button"
+                                class={opcao.classe}
+                                data-prazo={opcao.prazo}
+                                aria-pressed={opcao.ariaPressed}
+                                onclick={handlePrazo}>
+                                {opcao.rotulo}
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <lightning-input
+                    type="number"
+                    formatter="currency"
+                    step="0.01"
+                    min="0"
+                    label="Renda mensal do cliente (opcional)"
+                    field-level-help="Com a renda, os bancos recusam parcelas acima de 30% dela."
+                    value={renda}
+                    onchange={handleRenda}>
+                </lightning-input>
+            </div>
+
+            <button
+                type="button"
+                class="sc-btn sc-btn-principal sc-btn-largo"
+                disabled={consultando}
+                onclick={handleConsultar}>
+                <lightning-icon icon-name="utility:search" size="x-small" variant="inverse"></lightning-icon>
+                {rotuloConsultar}
+            </button>
+            <button type="button" class="sc-btn sc-btn-texto pular" onclick={handlePular}>
+                Cliente não vai financiar, ir para a proposta
+            </button>
+
+        </aside>
+
+        <!-- Respostas dos bancos -->
+        <section class="resultados" aria-live="polite">
+            <p class="aviso-simulacao">
+                <lightning-icon icon-name="utility:info" size="xx-small"></lightning-icon>
+                Simulação com bancos e dados fictícios. Nenhuma consulta real é feita.
+            </p>
+            <template lwc:if={temResultado}>
+                <div class="progresso">
+                    <span class="progresso-texto">{textoProgresso}</span>
+                    <div class="progresso-trilho"><span class="progresso-barra" style={estiloProgresso}></span></div>
+                </div>
+
+                <ul class="ofertas sc-rolagem">
+                    <template for:each={ofertas} for:item="oferta">
+                        <li key={oferta.id} class={oferta.classe}>
+                            <span class="logo" style={oferta.estiloLogo} aria-hidden="true">{oferta.sigla}</span>
+
+                            <div class="oferta-banco">
+                                <p class="oferta-nome">
+                                    {oferta.nome}
+                                    <template lwc:if={oferta.ehMelhor}>
+                                        <span class="selo-melhor">Melhor oferta</span>
+                                    </template>
+                                </p>
+                                <template lwc:if={oferta.pendente}>
+                                    <p class="consultando"><span class="pontos" aria-hidden="true"></span>Consultando</p>
+                                </template>
+                                <template lwc:else>
+                                    <span class={oferta.classeStatus}>{oferta.rotuloStatus}</span>
+                                    <template lwc:if={oferta.motivo}>
+                                        <p class="oferta-motivo">{oferta.motivo}</p>
+                                    </template>
+                                </template>
+                            </div>
+
+                            <template lwc:if={oferta.aprovada}>
+                                <dl class="oferta-numeros">
+                                    <div>
+                                        <dt>Parcela</dt>
+                                        <dd class="oferta-parcela sc-numero">{oferta.parcelaTexto}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Taxa</dt>
+                                        <dd class="sc-numero">{oferta.taxaTexto}</dd>
+                                        <span class="oferta-cet">{oferta.cetTexto}</span>
+                                    </div>
+                                    <div>
+                                        <dt>Entrada</dt>
+                                        <dd class="sc-numero">{oferta.entradaTexto}</dd>
+                                    </div>
+                                </dl>
+                                <button
+                                    type="button"
+                                    class="sc-btn sc-btn-principal btn-escolher"
+                                    data-id={oferta.id}
+                                    disabled={oferta.escolhida}
+                                    onclick={handleEscolher}>
+                                    {oferta.rotuloEscolher}
+                                </button>
+                            </template>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+
+            <template lwc:else>
+                <div class="vazio">
+                    <div class="vazio-icones" aria-hidden="true">
+                        <span style="background:#16a34a">AB</span>
+                        <span style="background:#7c3aed">AU</span>
+                        <span style="background:#0284c7">HF</span>
+                        <span style="background:#ea580c">RC</span>
+                        <span style="background:#e11d48">PA</span>
+                    </div>
+                    <p class="vazio-titulo">Compare o crédito em 5 bancos de uma vez</p>
+                    <p class="vazio-texto">Ajuste entrada, prazo e renda e clique em consultar. Os bancos respondem em segundos, com taxa, parcela e condição de cada um.</p>
+                </div>
+            </template>
+        </section>
+    </div>
+</template>

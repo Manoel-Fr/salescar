@@ -1,0 +1,167 @@
+<template>
+    <div class="etapa">
+        <!-- Lista de clientes -->
+        <aside class="lista sc-painel" aria-label="Clientes">
+            <lightning-input
+                type="search"
+                label="Buscar cliente"
+                variant="label-hidden"
+                placeholder="Nome, telefone ou site"
+                value={termoBusca}
+                is-loading={carregandoLista}
+                onchange={handleBusca}>
+            </lightning-input>
+
+            <template lwc:if={erroLista}>
+                <p class="aviso aviso-erro" role="alert">{erroLista}</p>
+            </template>
+
+            <template lwc:if={temClientes}>
+                <ul class="itens sc-rolagem">
+                    <template for:each={listaExibida} for:item="cliente">
+                        <li key={cliente.Id}>
+                            <button
+                                type="button"
+                                class={cliente.classe}
+                                data-id={cliente.Id}
+                                aria-current={cliente.ariaCurrent}
+                                onclick={handleVisualizar}>
+                                <span class="item-avatar" aria-hidden="true">{cliente.inicial}</span>
+                                <span class="item-dados">
+                                    <span class="item-nome">{cliente.Name}</span>
+                                    <span class="item-detalhe">{cliente.detalhe}</span>
+                                </span>
+                                <template lwc:if={cliente.escolhido}>
+                                    <span class="item-selo" title="Cliente desta negociação">
+                                        <lightning-icon icon-name="utility:check" size="xx-small" variant="inverse" alternative-text="Cliente desta negociação"></lightning-icon>
+                                    </span>
+                                </template>
+                            </button>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template lwc:elseif={carregandoLista}>
+                <div class="sc-carregando"><lightning-spinner alternative-text="Carregando clientes" size="small"></lightning-spinner></div>
+            </template>
+            <template lwc:else>
+                <p class="aviso">Nenhum cliente encontrado. Confira a grafia ou busque pelo telefone.</p>
+            </template>
+        </aside>
+
+        <!-- Perfil -->
+        <section class="perfil sc-rolagem" aria-live="polite">
+            <template lwc:if={erroPerfil}>
+                <div class="sc-erro" role="alert">{erroPerfil}</div>
+            </template>
+
+            <template lwc:if={carregandoPerfil}>
+                <div class="esqueleto esqueleto-capa"></div>
+                <div class="esqueleto esqueleto-linha"></div>
+                <div class="esqueleto esqueleto-bloco"></div>
+            </template>
+
+            <template lwc:elseif={temPerfil}>
+                <div class="capa">
+                    <span class="capa-avatar" aria-hidden="true">{inicialPerfil}</span>
+                    <div class="capa-dados">
+                        <h2 class="capa-nome">{perfil.nome}</h2>
+                        <div class="capa-chips">
+                            <template for:each={etiquetas} for:item="etiqueta">
+                                <span key={etiqueta.chave} class={etiqueta.classe}>{etiqueta.texto}</span>
+                            </template>
+                        </div>
+                        <p class="capa-meta">Cliente desde {clienteDesde}</p>
+                    </div>
+                    <button type="button" class={classeBotaoEscolher} onclick={handleEscolher}>
+                        <template lwc:if={perfilEscolhido}>
+                            <lightning-icon icon-name="utility:check" size="x-small" variant="inverse"></lightning-icon>
+                        </template>
+                        {rotuloBotaoEscolher}
+                    </button>
+                </div>
+
+                <dl class="indicadores">
+                    <template for:each={indicadores} for:item="indicador">
+                        <div key={indicador.chave} class="indicador">
+                            <dt>{indicador.rotulo}</dt>
+                            <dd class="sc-numero">{indicador.valor}</dd>
+                        </div>
+                    </template>
+                </dl>
+
+                <div class="blocos">
+                    <div class="bloco sc-painel">
+                        <h3 class="bloco-titulo">Dados cadastrais</h3>
+                        <dl class="dados">
+                            <template for:each={dadosCadastrais} for:item="dado">
+                                <div key={dado.chave} class="dado">
+                                    <span class="dado-icone"><lightning-icon icon-name={dado.icone} size="xx-small"></lightning-icon></span>
+                                    <dt>{dado.rotulo}</dt>
+                                    <dd class={dado.classe}>{dado.valor}</dd>
+                                </div>
+                            </template>
+                        </dl>
+                    </div>
+
+                    <div class="bloco sc-painel">
+                        <h3 class="bloco-titulo">Contatos</h3>
+                        <template lwc:if={temContatos}>
+                            <ul class="contatos">
+                                <template for:each={contatos} for:item="contato">
+                                    <li key={contato.id} class="contato">
+                                        <span class="contato-avatar" aria-hidden="true">{contato.inicial}</span>
+                                        <div class="contato-dados">
+                                            <p class="contato-nome">{contato.nome}</p>
+                                            <p class="contato-cargo">{contato.cargoTexto}</p>
+                                            <p class="contato-meios">
+                                                <template lwc:if={contato.linkEmail}>
+                                                    <a href={contato.linkEmail}>{contato.email}</a>
+                                                </template>
+                                                <template lwc:if={contato.telefone}>
+                                                    <span class="sc-numero">{contato.telefone}</span>
+                                                </template>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+                        <template lwc:else>
+                            <p class="aviso">Nenhum contato cadastrado nesta conta.</p>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="bloco sc-painel">
+                    <h3 class="bloco-titulo">Histórico de negociações</h3>
+                    <template lwc:if={temHistorico}>
+                        <ol class="linha-tempo">
+                            <template for:each={historico} for:item="item">
+                                <li key={item.id} class={item.classe}>
+                                    <span class="marco-ponto" aria-hidden="true"></span>
+                                    <div class="marco-dados">
+                                        <p class="marco-nome">{item.nome}</p>
+                                        <p class="marco-meta">{item.fase}, {item.dataTexto}</p>
+                                    </div>
+                                    <span class="marco-situacao">{item.situacao}</span>
+                                    <span class="marco-valor sc-numero">{item.valorTexto}</span>
+                                </li>
+                            </template>
+                        </ol>
+                    </template>
+                    <template lwc:else>
+                        <p class="aviso">Primeira negociação com este cliente.</p>
+                    </template>
+                </div>
+
+                <template lwc:if={perfil.descricao}>
+                    <div class="bloco sc-painel">
+                        <h3 class="bloco-titulo">Observações da conta</h3>
+                        <p class="descricao">{perfil.descricao}</p>
+                    </div>
+                </template>
+            </template>
+        </section>
+    </div>
+</template>

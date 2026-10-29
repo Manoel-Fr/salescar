@@ -1,0 +1,107 @@
+@import 'c/salesCarStyles';
+
+.bloco {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--sc-borda);
+}
+
+.selecionado {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: var(--sc-raio-controle);
+    background: var(--sc-marca-suave);
+}
+
+.avatar {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: var(--sc-marca);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.avatar-pequeno {
+    width: 1.75rem;
+    height: 1.75rem;
+    background: var(--sc-fundo);
+    color: var(--sc-texto-2);
+    font-size: var(--sc-fonte-xs);
+}
+
+.dados {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.nome {
+    margin: 0;
+    font-size: var(--sc-fonte-md);
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.contato {
+    margin: 0;
+    font-size: var(--sc-fonte-xs);
+    color: var(--sc-texto-3);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.resultados {
+    margin: 0.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid var(--sc-borda);
+    border-radius: var(--sc-raio-controle);
+    overflow: hidden;
+}
+
+.resultados li + li {
+    border-top: 1px solid var(--sc-borda);
+}
+
+.resultado {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 0;
+    background: var(--sc-superficie);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.resultado:hover,
+.resultado:focus-visible {
+    background: var(--sc-marca-suave);
+    outline: none;
+}
+
+.resultado .nome {
+    font-size: var(--sc-fonte-sm);
+}
+
+.aviso {
+    margin: 0.5rem 0 0;
+    font-size: var(--sc-fonte-xs);
+    color: var(--sc-texto-3);
+}
+
+.aviso-erro {
+    color: var(--sc-vermelho);
+}

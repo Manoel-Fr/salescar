@@ -1,0 +1,175 @@
+<template>
+    <section aria-label="Estoque de veículos">
+        <div class="ferramentas" role="search">
+            <lightning-input
+                class="busca"
+                type="search"
+                label="Buscar no estoque"
+                variant="label-hidden"
+                placeholder="Buscar por marca, modelo ou placa"
+                value={termoBusca}
+                onchange={handleBusca}>
+            </lightning-input>
+            <lightning-combobox
+                class="filtro"
+                label="Ano"
+                variant="label-hidden"
+                value={filtroAno}
+                options={opcoesAno}
+                onchange={handleFiltroAno}>
+            </lightning-combobox>
+            <lightning-combobox
+                class="filtro"
+                label="Ordenar"
+                variant="label-hidden"
+                value={ordenacao}
+                options={opcoesOrdenacao}
+                onchange={handleOrdenacao}>
+            </lightning-combobox>
+            <lightning-button-icon
+                icon-name="utility:refresh"
+                variant="border-filled"
+                alternative-text="Atualizar estoque"
+                title="Atualizar estoque"
+                onclick={handleAtualizar}>
+            </lightning-button-icon>
+        </div>
+
+        <div class="marcas" role="group" aria-label="Filtrar por marca">
+            <template for:each={chipsMarca} for:item="chip">
+                <button
+                    key={chip.valor}
+                    type="button"
+                    class={chip.classe}
+                    data-valor={chip.valor}
+                    aria-pressed={chip.ariaPressed}
+                    onclick={handleChipMarca}>
+                    {chip.rotulo}
+                    <span class="chip-quantidade sc-numero">{chip.quantidade}</span>
+                </button>
+            </template>
+        </div>
+
+        <div class="contagem">
+            <span aria-live="polite">{textoResultados}</span>
+            <template lwc:if={temFiltroAtivo}>
+                <button type="button" class="sc-btn sc-btn-texto" onclick={handleLimparFiltros}>Limpar filtros</button>
+            </template>
+        </div>
+
+        <template lwc:if={erro}>
+            <div class="sc-erro" role="alert">
+                <lightning-icon icon-name="utility:error" size="x-small" variant="error"></lightning-icon>
+                <span>{erro}</span>
+            </div>
+        </template>
+
+        <template lwc:if={isLoading}>
+            <ul class="grade" aria-hidden="true">
+                <li class="esqueleto"></li>
+                <li class="esqueleto"></li>
+                <li class="esqueleto"></li>
+            </ul>
+        </template>
+
+        <template lwc:elseif={temVeiculos}>
+            <ul class="grade">
+                <template for:each={veiculosFiltrados} for:item="veiculo">
+                    <li key={veiculo.Id} class={veiculo.classeCard} style={veiculo.estiloCard}>
+                        <div class="foto">
+                            <template lwc:if={veiculo.imagemUrl}>
+                                <img src={veiculo.imagemUrl} alt={veiculo.textoFoto} loading="lazy" />
+                            </template>
+                            <template lwc:else>
+                                <div class="foto-ausente">
+                                    <lightning-icon icon-name="utility:image" size="small" alternative-text="Sem foto"></lightning-icon>
+                                </div>
+                            </template>
+
+                            <div class="foto-topo">
+                                <span class={veiculo.classeStatus}>{veiculo.status}</span>
+                                <template lwc:if={veiculo.zeroKm}>
+                                    <span class="selo-zero">0 km</span>
+                                </template>
+                            </div>
+
+                            <template lwc:if={veiculo.estaNoCarrinho}>
+                                <span class="selo-escolhido">
+                                    <lightning-icon icon-name="utility:check" size="xx-small" variant="inverse"></lightning-icon>
+                                    Na negociação
+                                </span>
+                            </template>
+
+                            <div class="foto-legenda">
+                                <p class="marca">{veiculo.marca}</p>
+                                <h3 class="modelo">{veiculo.modelo}</h3>
+                            </div>
+                        </div>
+
+                        <div class="corpo">
+                            <dl class="ficha">
+                                <div>
+                                    <dt>Ano</dt>
+                                    <dd>{veiculo.ano}</dd>
+                                </div>
+                                <div>
+                                    <dt>Rodagem</dt>
+                                    <dd class="sc-numero">{veiculo.kmFormatado}</dd>
+                                </div>
+                                <div>
+                                    <dt>Câmbio</dt>
+                                    <dd>{veiculo.cambio}</dd>
+                                </div>
+                                <div>
+                                    <dt>Combustível</dt>
+                                    <dd>{veiculo.combustivel}</dd>
+                                </div>
+                            </dl>
+                            <p class="detalhes">
+                                <template lwc:if={veiculo.estiloCor}>
+                                    <span class="amostra-cor" style={veiculo.estiloCor} aria-hidden="true"></span>
+                                </template>
+                                <span>{veiculo.cor}</span>
+                                <template lwc:if={veiculo.portasTexto}>
+                                    <span class="detalhe-sep">{veiculo.portasTexto}</span>
+                                </template>
+                                <template lwc:if={veiculo.placa}>
+                                    <span class="detalhe-sep placa">{veiculo.placa}</span>
+                                </template>
+                            </p>
+                        </div>
+
+                        <div class="rodape">
+                            <div class="preco-bloco">
+                                <span class="preco-rotulo">Preço</span>
+                                <span class="sc-preco">{veiculo.precoFormatado}</span>
+                            </div>
+                            <button
+                                type="button"
+                                class="sc-btn sc-btn-principal btn-carrinho"
+                                data-id={veiculo.Id}
+                                aria-label={veiculo.textoAcao}
+                                disabled={veiculo.bloqueado}
+                                onclick={handleAddCarrinho}>
+                                {veiculo.rotuloAcao}
+                            </button>
+                        </div>
+                    </li>
+                </template>
+            </ul>
+        </template>
+
+        <template lwc:else>
+            <div class="sc-painel sc-vazio">
+                <lightning-icon icon-name="utility:search" size="medium"></lightning-icon>
+                <p class="sc-vazio-titulo">Nenhum veículo encontrado</p>
+                <p class="sc-vazio-texto">Nenhum veículo do estoque atende à busca e aos filtros escolhidos.</p>
+                <template lwc:if={temFiltroAtivo}>
+                    <button type="button" class="sc-btn sc-btn-secundario" onclick={handleLimparFiltros}>
+                        Limpar filtros
+                    </button>
+                </template>
+            </div>
+        </template>
+    </section>
+</template>
